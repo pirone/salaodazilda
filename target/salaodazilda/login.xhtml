@@ -6,44 +6,30 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-<h:head>
-    <h:outputStylesheet library="css" name="main.css"/>
-</h:head>
-<h:body>
-    <h:form id="loginForm">
-        <p:panelGrid>
-            <f:facet name="header">
-                <p:row>
-                    <p:column colspan="2">Login</p:column>
-                </p:row>
-            </f:facet>
 
-            <p:row>
-                <p:column>
-                    <p:outputLabel for="usuario" value="Usuário"/>
-                </p:column>
-                <p:column>
-                    <p:inputText id="usuario" required="true" requiredMessage="Usuário Obrigatório"/>
-                    <p:message for="usuario" />
-                </p:column>
-            </p:row>
+	<h:head>
+		<h:outputStylesheet name="css/custom.css"/>
+	</h:head>
+	<h:body>
+		<div class="background">
+			<h:form>
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" showSummary="false" />
+				<p:panelGrid columns="2" styleClass="panelGridCenter">
+					<f:facet name="header">
+						<h3>Login</h3>
+					</f:facet>
+						<h:outputLabel for="user" value="Usuário:"/>
+						<p:inputText id="user" required="true" maxlength="10"  requiredMessage="Usuário obrigatório."/>
 
-            <p:row>
-                <p:column>
-                    <p:outputLabel for="senha" value="Senha"/>
-                </p:column>
-                <p:column>
-                    <p:inputText id="senha" required="true" requiredMessage="Senha obrigatória"/>
-                    <p:message for="senha" />
-                </p:column>
-            </p:row>
+						<h:outputLabel for="password" value="Senha:"/>
+						<p:password id="password" required="true" maxlength="8"  requiredMessage="Senha obrigatória."/>
 
-            <f:facet name="footer">
-                <p:row>
-                    <p:column colspan="2"><p:commandButton value="Entrar" update="loginForm"/></p:column>
-                </p:row>
-            </f:facet>
-        </p:panelGrid>
-    </h:form>
-</h:body>
+						<f:facet name="footer">
+						<p:commandButton value="Entrar" update="growl" actionListener="#{userLoginView.login}"
+										 oncomplete="handleLoginRequest(xhr, status, args)" />
+						</f:facet>
+				</p:panelGrid>
+			</h:form>
+		</div>
+	</h:body>
 </html>
