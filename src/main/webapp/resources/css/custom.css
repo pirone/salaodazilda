@@ -2,10 +2,10 @@
 	margin: 0 auto;
 }
 
-body {
-	background-image: url("../images/salao_background.jpg");
+body
+{
+	background-image:url('../images/salao_background.jpg');
 }
-
 .painelGeral{
 	border-style: solid;
 	border-color: black;

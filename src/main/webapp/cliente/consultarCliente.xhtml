@@ -8,9 +8,14 @@
         <h:body>
             <h3>Consultar Cliente</h3>
             <hr/>
-            <h:form>
-                <p:outputLabel for="cpf" value="CPF:"/>
+            <h:form id="consultarCliente">
+                <p:outputLabel for="cpf" value="CPF: "/>
                 <p:inputMask mask="999.999.999-99" id="cpf"/>
+
+                <p:outputLabel for="nome" value="Nome: "/>
+                <p:inputText id="nome" maxlength="100" size="100"/>
+
+                <p:commandButton id="consultar" value="Consultar"/>
             </h:form>
         </h:body>
     </ui:define>
