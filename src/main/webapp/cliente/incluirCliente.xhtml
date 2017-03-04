@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/templates/master.xhtml">
+    <ui:define name="corpo">
+        <h:body>
+            <h3>Consultar Cliente</h3>
+            <hr/>
+            <h:form id="consultarCliente">
+                <p:outputLabel for="cpf" value="CPF: "/>
+                <p:inputMask mask="999.999.999-99" id="cpf"/>
+
+                <p:outputLabel for="nome" value="Nome: "/>
+                <p:inputText id="nome" maxlength="100" size="100"/>
+
+                <br/>
+                <p:commandButton id="btIncluir" value="Incluir"/>
+            </h:form>
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>
