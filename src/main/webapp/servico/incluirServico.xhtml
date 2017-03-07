@@ -2,19 +2,26 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ph="http://xmlns.jcp.org/jsf/composite/ph" >
+      
 <ui:composition template="/WEB-INF/templates/master.xhtml">
     <ui:define name="corpo">
         <h:body>
-            <h3>Consultar Cliente</h3>
+            <h3>Incluir Serviço</h3>
             <hr/>
-            <h:form id="incluirServico">
-                <p:outputLabel for="cpf" value="Nome: "/>
-                <p:inputMask mask="999.999.999-99" id="cpf"/>
-
-                <p:outputLabel for="nome" value="Nome: "/>
-                <p:inputText id="nome" maxlength="100" size="100"/>
-
+            <h:form id="incluirServico" prependId="false">
+            	<ph:inputText inputId="nomeServico" label="Nome" size="100"/>
+				
+				<ph:inputText inputId="descricao" label="Descrição"  size="150" />
+                
+                <p:outputLabel for="preco" value="Preço: "/>
+                <p:inputMask id="preco" mask="999.999,99" size="10"/>
+                
+                <ph:inputText inputId="aff" label="Teste componente" />
+                <br/>
+    
+	
                 <br/>
                 <p:commandButton id="btIncluir" value="Incluir"/>
             </h:form>
