@@ -15,7 +15,7 @@ public class Servico implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_servico")
+	@Column(name="idservico")
 	private int idServico;
 
 	private String descricao;
