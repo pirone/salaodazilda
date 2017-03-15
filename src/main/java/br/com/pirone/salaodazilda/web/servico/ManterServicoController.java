@@ -2,26 +2,24 @@ package br.com.pirone.salaodazilda.web.servico;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import br.com.pirone.salaodazilda.DAO.ManterServicoDAO;
 import br.com.pirone.salaodazilda.domain.Servico;
+		
+@Named
+@RequestScoped
+public class ManterServicoController implements Serializable {
 
-@ManagedBean
-@ViewScoped
-public class ManterServicoController implements Serializable{
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	ManterServicoDAO manterDAO = new ManterServicoDAO();
 	
 	private Servico servicoInclusao;
 	
@@ -41,19 +39,10 @@ public class ManterServicoController implements Serializable{
 	
 	
 	public void incluirServico() {
-		
-		
-		this.servicoInclusao = new Servico();
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("salaodazildaPU");
-		this.getNome();
-		this.incluirServicoView.getServico().getDescricao();
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		servicoInclusao = new Servico();
-		servicoInclusao.setNome("Teste2");
-		servicoInclusao.setDescricao("Puts2");
-		System.out.println("COMIITING");
 		em.persist(servicoInclusao);
 		em.getTransaction().commit();
 	}
@@ -72,6 +61,12 @@ public class ManterServicoController implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	@PostConstruct
+	void post() {
+		this.servicoInclusao = new Servico();
+		this.incluirServicoView.setServico(new Servico());
 	}
 	
 }

@@ -10,14 +10,14 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.validation.Valid;
 
-public abstract class GenericDAO<T, I extends Serializable> {
+public abstract class GenericEntityManager<T, I extends Serializable> {
 
 	   @Inject
 	   protected EntityManager entityManager;
 
 	   private Class<T> persistedClass;
 
-	   protected GenericDAO() {
+	   protected GenericEntityManager() {
 	   }
 
 	   protected void GenericDao(Class<T> persistedClass) {

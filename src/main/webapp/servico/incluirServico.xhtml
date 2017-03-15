@@ -10,16 +10,16 @@
         <h:body>
             <h3>Incluir Serviço</h3>
             <hr/>
-            <h:form id="incluirServico" prependId="false">
-            	<ph:inputText inputId="nomeServico" label="Nome" size="100" value="#{manterServicoController.nome}"/>
+            <h:form id="incluirServico" prependId="false" >
+            	<ph:inputText inputId="nomeServico" label="Nome" size="100" value="#{manterServicoController.servicoInclusao.nome}"/>
 				
 				<ph:inputText inputId="descricao" label="Descrição"  size="150" value="#{manterServicoController.servicoInclusao.descricao}"/>
                 
                 <p:outputLabel for="preco" value="Preço: "/>
-                <p:inputMask id="preco" mask="999.999,99" size="10" value="#{manterServicoController.servicoInclusao.preco}"/>
+                <p:inputText id="preco" size="10" value="#{manterServicoController.servicoInclusao.preco}"/>
                 <br/>
                 
-                <p:commandButton id="btIncluir" value="Incluir" action="#{manterServicoController.incluirServico()}"  process="@this" type="submit"/>
+                <p:commandButton id="btIncluir" value="Incluir" action="#{manterServicoController.incluirServico()}"/>
             </h:form>
         </h:body>
     </ui:define>

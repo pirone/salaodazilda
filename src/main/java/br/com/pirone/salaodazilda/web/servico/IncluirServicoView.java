@@ -2,11 +2,13 @@ package br.com.pirone.salaodazilda.web.servico;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
 import br.com.pirone.salaodazilda.domain.Servico;
 
-@ManagedBean
+@Named
+@RequestScoped
 public class IncluirServicoView implements Serializable {
 	
 	/**
@@ -14,14 +16,16 @@ public class IncluirServicoView implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	public IncluirServicoView() {
+		this.servico = new Servico();
+	}
+	
 	private Servico servico;
 	
 	public Servico getServico() {
-		if (servico == null) {
-	        servico = new Servico();
-		}
 		return servico;
 	}
+	
 	public void setServico(Servico servico) {
 		this.servico = servico;
 	}
