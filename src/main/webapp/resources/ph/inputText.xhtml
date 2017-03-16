@@ -14,6 +14,7 @@
     <composite:attribute name="inputId" required="true"/>
     <composite:attribute name="max" required="false" default="50"/>
     <composite:attribute name="size" required="false"/>
+    <composite:attribute name="required" default="false"/>
 </composite:interface>
 
 <composite:implementation>
@@ -21,7 +22,7 @@
 		<div>
 			<p:outputLabel for="#{cc.attrs.inputId}" value="#{cc.attrs.label}: "/>
 			<br/>
-		    <p:inputText id="#{cc.attrs.inputId}" maxlength="#{cc.attrs.max}" size="#{cc.attrs.size}" value="#{cc.attrs.value}"/>
+		    <p:inputText id="#{cc.attrs.inputId}" maxlength="#{cc.attrs.max}" size="#{cc.attrs.size}" value="#{cc.attrs.value}" required="#{cc.attrs.required}"/>
 	    </div>
     </h:body>
 </composite:implementation>

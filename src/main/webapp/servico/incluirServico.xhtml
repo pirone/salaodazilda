@@ -11,15 +11,18 @@
             <h3>Incluir Serviço</h3>
             <hr/>
             <h:form id="incluirServico" prependId="false" >
-            	<ph:inputText inputId="nomeServico" label="Nome" size="100" value="#{manterServicoController.servicoInclusao.nome}"/>
+            	<p:growl id="growl" showDetail="true" sticky="true" life="1000"/> 
+            	
+            	<ph:inputText inputId="nomeServico" label="Nome" size="100" value="#{manterServicoController.servicoInclusao.nome}" required="true" />
 				
-				<ph:inputText inputId="descricao" label="Descrição"  size="150" value="#{manterServicoController.servicoInclusao.descricao}"/>
+				<ph:inputText inputId="descricao" label="Descrição"  size="150" value="#{manterServicoController.servicoInclusao.descricao}" required="true" />
                 
                 <p:outputLabel for="preco" value="Preço: "/>
                 <p:inputText id="preco" size="10" value="#{manterServicoController.servicoInclusao.preco}"/>
                 <br/>
                 
-                <p:commandButton id="btIncluir" value="Incluir" action="#{manterServicoController.incluirServico()}"/>
+                <p:commandButton id="btIncluir" value="Incluir" action="#{manterServicoController.incluirServico()}" actionListener="#{growlMessages.inclusaoSucessoGenerico()}" update="growl"/>
+                
             </h:form>
         </h:body>
     </ui:define>
