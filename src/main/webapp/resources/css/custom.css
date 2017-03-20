@@ -9,3 +9,7 @@ body {
 	border-style: solid;
 	border-color: black;
 }
+
+.botaoExcluir {
+	background: red !important;
+}

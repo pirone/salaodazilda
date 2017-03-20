@@ -1,65 +1,20 @@
 package br.com.pirone.salaodazilda.config;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.validation.Valid;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
-public abstract class GenericEntityManager<T, I extends Serializable> {
+public abstract class GenericEntityManager {
+	
+	protected EntityManagerFactory emf = Persistence.createEntityManagerFactory("salaodazildaPU");
+	protected EntityManager em = emf.createEntityManager();
+	
+	public void salvar(Object objeto) {
 
-	   @Inject
-	   protected EntityManager entityManager;
-
-	   private Class<T> persistedClass;
-
-	   protected GenericEntityManager() {
-	   }
-
-	   protected void GenericDao(Class<T> persistedClass) {
-	       this.persistedClass = persistedClass;
-	   }
-
-	   public T salvar(@Valid T entity) {
-	       EntityTransaction t = entityManager.getTransaction();
-	       t.begin();
-	       entityManager.persist(entity);
-	       entityManager.flush();
-	       t.commit();
-	       return entity;
-	   }
-
-	   public T atualizar(@Valid T entity) {
-	       EntityTransaction t = entityManager.getTransaction();
-	       t.begin();
-	       entityManager.merge(entity);
-	       entityManager.flush();
-	       t.commit();
-	       return entity;
-	   }
-
-	   public void remover(I id) {
-	       T entity = encontrar(id);
-	       EntityTransaction tx = entityManager.getTransaction();
-	       tx.begin();
-	       T mergedEntity = entityManager.merge(entity);
-	       entityManager.remove(mergedEntity);
-	       entityManager.flush();
-	       tx.commit();
-	   }
-
-	   public List<T> getList() {
-	       CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-	       CriteriaQuery<T> query = builder.createQuery(persistedClass);
-	       query.from(persistedClass);
-	       return entityManager.createQuery(query).getResultList();
-	   }
-
-	   public T encontrar(I id) {
-	       return entityManager.find(persistedClass, id);
-	   }
+		
+		em.getTransaction().begin();
+		em.persist(objeto);
+		em.getTransaction().commit();
 	}
+	
+}

@@ -11,21 +11,19 @@
 <composite:interface>
     <composite:attribute name="value" required="false"/>
     <composite:attribute name="label" required="true"/>
-    <composite:attribute name="inputId" required="true" displayName="id"/>
+    <composite:attribute name="inputId" required="true"/>
     <composite:attribute name="max" required="false" default="50"/>
     <composite:attribute name="size" required="false"/>
     <composite:attribute name="required" default="false"/>
-    <composite:attribute name="classCss" required="false"/>
 </composite:interface>
 
 <composite:implementation>
 	<h:body>
-		<div class="#{cc.attrs.classCss}">
+		<div>
 			<p:outputLabel for="#{cc.attrs.inputId}" value="#{cc.attrs.label}: "/>
 			<br/>
-		    <p:inputText id="#{cc.attrs.inputId}" maxlength="#{cc.attrs.max}" size="#{cc.attrs.size}" value="#{cc.attrs.value}" required="#{cc.attrs.required}" 
-		    	requiredMessage="#{cc.attrs.label} obrigatório."/>
-		    <p:message for="#{cc.attrs.inputId}" display="tooltip"/>
+		    <p:inputNumber id="#{cc.attrs.inputId}" maxlength="#{cc.attrs.max}" size="#{cc.attrs.size}" value="#{cc.attrs.value}" required="#{cc.attrs.required}" 
+		    	decimalSeparator="," thousandSeparator="." requiredMessage="#{cc.attrs.label} obrigatório."/>
 	    </div>
     </h:body>
 </composite:implementation>

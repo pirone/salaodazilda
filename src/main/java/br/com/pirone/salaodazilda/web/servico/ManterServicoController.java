@@ -1,6 +1,7 @@
 package br.com.pirone.salaodazilda.web.servico;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -11,6 +12,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import br.com.pirone.salaodazilda.domain.Servico;
+import br.com.pirone.salaodazilda.service.manterServico.ManterServicoService;
+import br.com.pirone.salaodazilda.web.servico.consultar.ConsultarServicoView;
 		
 @Named
 @RequestScoped
@@ -25,26 +28,38 @@ public class ManterServicoController implements Serializable {
 	
 	private String nome;
 	
+	private Servico servico;
+	
+	private List<Servico> resultado;
+	
 	@Inject
-	private IncluirServicoView incluirServicoView;
+	private ConsultarServicoView incluirServicoView;
+	
+	@Inject
+	private ManterServicoService servicoService;
 
-	public IncluirServicoView getIncluirServicoView() {
+	public ConsultarServicoView getIncluirServicoView() {
 		return incluirServicoView;
 	}
 
-	public void setIncluirServicoView(IncluirServicoView incluirServicoView) {
+	public void setIncluirServicoView(ConsultarServicoView incluirServicoView) {
 		
 		this.incluirServicoView = incluirServicoView;
 	}
 	
-	
 	public void incluirServico() {
+		
+		
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("salaodazildaPU");
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(servicoInclusao);
 		em.getTransaction().commit();
+	}
+	
+	public void consultar() {
+		this.setResultado(servicoService.consultar());
 	}
 
 	public Servico getServicoInclusao() {
@@ -63,6 +78,22 @@ public class ManterServicoController implements Serializable {
 		this.nome = nome;
 	}
 	
+	public List<Servico> getResultado() {
+		return resultado;
+	}
+
+	public void setResultado(List<Servico> resultado) {
+		this.resultado = resultado;
+	}
+
+	public Servico getServico() {
+		return servico;
+	}
+
+	public void setServico(Servico servico) {
+		this.servico = servico;
+	}
+
 	@PostConstruct
 	void post() {
 		this.servicoInclusao = new Servico();

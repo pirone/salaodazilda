@@ -1,19 +1,16 @@
 package br.com.pirone.salaodazilda.service.manterServico;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.List;
+
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
 import br.com.pirone.salaodazilda.domain.Servico;
 
-public class ManterServicoService implements ManterServicoServiceLocal {
+@Named
+@RequestScoped
+public interface ManterServicoService {
 	
-	EntityManagerFactory factory = Persistence.createEntityManagerFactory("servico");
-	EntityManager manager = factory.createEntityManager();
-
-	@Override
-	public void incluirServico(Servico servico) {
-		manager.persist(servico);
-	}
+	List<Servico> consultar();
 
 }

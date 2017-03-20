@@ -129,6 +129,13 @@
 		    <version>2.6.1</version>
 		</dependency>
 		
+		<!-- Uai Criteria -->
+		<dependency>
+		    <groupId>uaihebert.com</groupId>
+		    <artifactId>uaiCriteria</artifactId>
+		    <version>4.0.0</version>
+		</dependency>
+		
     </dependencies>
 
     <!-- BUILD CONFIGURATION -->
