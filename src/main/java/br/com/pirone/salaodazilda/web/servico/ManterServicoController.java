@@ -59,7 +59,7 @@ public class ManterServicoController implements Serializable {
 	}
 	
 	public void consultar() {
-		this.setResultado(servicoService.consultar());
+		this.setResultado(servicoService.consultar(this.servicoInclusao));
 	}
 
 	public Servico getServicoInclusao() {

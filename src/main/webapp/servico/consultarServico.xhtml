@@ -13,11 +13,11 @@
             <h:form id="incluirServico" prependId="false" >
             	<p:growl id="growl" showDetail="true"/> 
             	
-            	<ph:inputText inputId="nomeServico" label="Nome" value="#{manterServicoController.servicoInclusao.nome}" />
+            	<ph:inputText inputId="nomeServico" label="Nome" value="#{consultarServicoController.consultarServicoView.servico.nome}" />
 				
-				<ph:inputText inputId="descricao" label="Descrição" value="#{manterServicoController.servicoInclusao.descricao}" />
+				<ph:inputText inputId="descricao" label="Descrição" value="#{consultarServicoController.consultarServicoView.servico.descricao}" />
                 
-                <ph:inputMoney inputId="preco" label="Preço" value="#{manterServicoController.servicoInclusao.preco}" />
+                <ph:inputMoney inputId="preco" label="Preço" value="#{consultarServicoController.consultarServicoView.servico.preco}" />
                 <br/>
                 
                 <p:commandButton id="btConsultar" value="Consultar" action="#{consultarServicoController.consultar()}" update="table"/>

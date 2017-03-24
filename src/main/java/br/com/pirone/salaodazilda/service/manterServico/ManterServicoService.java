@@ -11,6 +11,6 @@ import br.com.pirone.salaodazilda.domain.Servico;
 @RequestScoped
 public interface ManterServicoService {
 	
-	List<Servico> consultar();
+	List<Servico> consultar(Servico servico);
 
 }

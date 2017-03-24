@@ -15,8 +15,8 @@ public class ManterServicoServiceImpl implements ManterServicoService {
 	ManterServicoRepository servicoRepository;
 
 	@Override
-	public List<Servico> consultar() {
-		return servicoRepository.consultarServicos();
+	public List<Servico> consultar(Servico servico) {
+		return servicoRepository.consultarServicos(servico);
 	}
 
 }

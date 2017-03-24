@@ -22,7 +22,10 @@ public class ManterServicoRepository extends GenericEntityManager implements Ser
 	
 	final UaiCriteria<Servico> uaiCriteria = UaiCriteriaFactory.createQueryCriteria(em, Servico.class);
 	
-	public List<Servico> consultarServicos() {
+	public List<Servico> consultarServicos(Servico servico) {
+		uaiCriteria.andStringLike("nome", "%"+servico.getNome()+"%");
+		uaiCriteria.andStringLike("descricao", "%"+servico.getDescricao()+"%");
+		uaiCriteria.andGreaterOrEqualTo("preco", servico.getPreco());
 		return uaiCriteria.getResultList();
 	}
 

@@ -33,7 +33,7 @@ public class ConsultarServicoController implements Serializable {
 	}
 	
 	public void consultar() {
-		consultarServicoView.setResultado(servicoService.consultar());
+		consultarServicoView.setResultado(servicoService.consultar(consultarServicoView.getServico()));
 	}
 
 	public ConsultarServicoView getConsultarServicoView() {
