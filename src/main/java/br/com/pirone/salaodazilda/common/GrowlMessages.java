@@ -19,11 +19,11 @@ public class GrowlMessages {
      
     public void inclusaoSucessoGenerico() {
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Oba!",  "Registro incluído com sucesso."));
+        context.addMessage(null, new FacesMessage("Oba!", "Registro incluÃ­do com sucesso."));
     }
     
     public void inclusaoSucessoCustom() {
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Oba!",  message + " incluído com sucesso."));
+        context.addMessage(null, new FacesMessage("Oba!",  message + " incluÃ­do com sucesso."));
     }
 }
