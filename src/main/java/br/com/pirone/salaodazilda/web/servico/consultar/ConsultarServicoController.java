@@ -6,6 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.pirone.salaodazilda.domain.Servico;
 import br.com.pirone.salaodazilda.service.manterServico.ManterServicoService;
 
 @Named
@@ -34,6 +35,10 @@ public class ConsultarServicoController implements Serializable {
 	
 	public void consultar() {
 		consultarServicoView.setResultado(servicoService.consultar(consultarServicoView.getServico()));
+	}
+	
+	public void inativar(Servico servico) {
+		servicoService.inativar(servico);
 	}
 
 	public ConsultarServicoView getConsultarServicoView() {

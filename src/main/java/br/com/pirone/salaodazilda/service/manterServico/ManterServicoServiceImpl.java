@@ -18,5 +18,10 @@ public class ManterServicoServiceImpl implements ManterServicoService {
 	public List<Servico> consultar(Servico servico) {
 		return servicoRepository.consultarServicos(servico);
 	}
+	
+	@Override
+	public void inativar(Servico servico) {
+		servicoRepository.inativar(servico);
+	}
 
 }

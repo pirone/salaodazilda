@@ -9,11 +9,15 @@ public abstract class GenericEntityManager {
 	protected EntityManagerFactory emf = Persistence.createEntityManagerFactory("salaodazildaPU");
 	protected EntityManager em = emf.createEntityManager();
 	
-	public void salvar(Object objeto) {
-
-		
+	public void incluir(Object objeto) {
 		em.getTransaction().begin();
 		em.persist(objeto);
+		em.getTransaction().commit();
+	}
+	
+	public void alterar(Object objeto) {
+		em.getTransaction().begin();
+		em.merge(objeto);
 		em.getTransaction().commit();
 	}
 	

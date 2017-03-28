@@ -20,11 +20,13 @@ public class ConsultarServicoView implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public ConsultarServicoView() {
-		resultado = new ArrayList<>();
+		resultado = new ArrayList<Servico>();
 		servico = new Servico();
 	}
 	
 	private Servico servico;
+	
+	private Servico servicoEdicao;
 	
 	private List<Servico> resultado;
 	
@@ -42,6 +44,14 @@ public class ConsultarServicoView implements Serializable {
 
 	public void setResultado(List<Servico> resultado) {
 		this.resultado = resultado;
+	}
+
+	public Servico getServicoEdicao() {
+		return servicoEdicao;
+	}
+
+	public void setServicoEdicao(Servico servicoEdicao) {
+		this.servicoEdicao = servicoEdicao;
 	}
 
 }

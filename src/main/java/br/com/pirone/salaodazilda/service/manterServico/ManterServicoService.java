@@ -12,5 +12,7 @@ import br.com.pirone.salaodazilda.domain.Servico;
 public interface ManterServicoService {
 	
 	List<Servico> consultar(Servico servico);
+	
+	void inativar(Servico servico);
 
 }

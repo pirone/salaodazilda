@@ -2,12 +2,51 @@
 	margin: 0 auto;
 }
 
+#cabecalho {
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+.topbar {
+	background-color: #7a7b7c;
+	padding: 4px;
+}
+
+.topbar span{
+	color: black;
+	font-family: fantasy;
+	font-size: 40px;
+}
+
+.cabecalho {
+	background: #3b3b48;
+	border: none;
+	padding: 0;
+	border-radius: 0;
+}
+
+#imgTop {
+	height: 40px;
+}
+
+.cabecalho .ui-submenu-link .ui-menuitem-text {
+	color: white;
+}
+
 body {
-	background-image:url("#{resource['images:salao_background.jpg']}");
+	background-image:url("#{resource['images:salao_background3.jpg']}");
+	margin-left: 0;
 }
 .painelGeral{
 	border-style: solid;
 	border-color: black;
+}
+
+#painelGeral {
+	margin-top: 110px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .botaoExcluir {

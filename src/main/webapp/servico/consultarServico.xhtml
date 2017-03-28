@@ -1,54 +1,80 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ph="http://xmlns.jcp.org/jsf/composite/ph" >
-      
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ph="http://xmlns.jcp.org/jsf/composite/ph">
+
 <ui:composition template="/WEB-INF/templates/master.xhtml">
-    <ui:define name="corpo">
-        <h:body>
-            <h3>Consultar Serviço</h3>
-            <hr/>
-            <h:form id="incluirServico" prependId="false" >
-            	<p:growl id="growl" showDetail="true"/> 
-            	
-            	<ph:inputText inputId="nomeServico" label="Nome" value="#{consultarServicoController.consultarServicoView.servico.nome}" />
-				
-				<ph:inputText inputId="descricao" label="Descrição" value="#{consultarServicoController.consultarServicoView.servico.descricao}" />
-                
-                <ph:inputMoney inputId="preco" label="Preço" value="#{consultarServicoController.consultarServicoView.servico.preco}" />
-                <br/>
-                
-                <p:commandButton id="btConsultar" value="Consultar" action="#{consultarServicoController.consultar()}" update="table"/>
-                <p:commandButton id="btIncluir" value="Incluir" action="incluirServico.xhtml?faces-redirect=true"  />
-                
-                <br />
-                
-                <p:dataTable paginator="true" rows="15" value="#{consultarServicoController.consultarServicoView.resultado}" id="table" lazy="true" var="servico"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="15,25,50" >
-                	<p:column headerText="Nome" styleClass="ui-lg-3">
-				        <h:outputText value="#{servico.nome}" />
-				    </p:column>
-				 
-				    <p:column headerText="Descrição" styleClass="ui-lg-6">
-				       <h:outputText value="#{servico.descricao}" />
-				    </p:column>
-				 
-				    <p:column headerText="Preço" styleClass="ui-lg-1">
-				       <h:outputText value="#{servico.preco}" converter="dinheiroConverter" />
-				    </p:column>
-				    
-				    <p:column headerText="Ação" styleClass="ui-lg-1">
-				    	<p:commandButton icon="fa fa-edit" title="Editar"/>
-				       	<p:commandButton class="botaoExcluir" icon="fa fa-remove" title="Remover"/>
-			    	</p:column>
-                
-                </p:dataTable>
-                
-            </h:form>
-        </h:body>
-    </ui:define>
+	<ui:define name="corpo">
+		<h:body>
+			<h3>Consultar Serviço</h3>
+			<hr />
+			<h:form id="incluirServico" prependId="false">
+				<p:growl id="growl" showDetail="true" />
+
+				<ph:inputText inputId="nomeServico" label="Nome"
+					value="#{consultarServicoController.consultarServicoView.servico.nome}" />
+
+				<ph:inputText inputId="descricao" label="Descrição"
+					value="#{consultarServicoController.consultarServicoView.servico.descricao}" />
+
+				<ph:inputMoney inputId="preco" label="Preço"
+					value="#{consultarServicoController.consultarServicoView.servico.preco}" />
+
+<!-- 				<p:outputLabel for="cbsituacao" value="Situação" /> -->
+<!-- 				<br/> -->
+<!-- 				<p:selectOneMenu id="cbsituacao" value="#{consultarServicoController.consultarServicoView.servico.situacao}" -->
+<!-- 					style="width:125px"> -->
+<!-- 					<f:selectItem itemLabel="ATIVO" itemValue="situacao.ATIVO" /> -->
+<!-- 					<f:selectItem itemLabel="INATIVO" itemValue="situacao.INATIVO" /> -->
+<!-- 				</p:selectOneMenu> -->
+				<br />
+
+
+				<p:commandButton id="btConsultar" value="Consultar"
+					action="#{consultarServicoController.consultar()}" update="table" />
+				<p:commandButton id="btIncluir" value="Incluir"
+					action="incluirServico.xhtml?faces-redirect=true" />
+
+				<br />
+
+				<p:dataTable paginator="true" rows="15"
+					value="#{consultarServicoController.consultarServicoView.resultado}"
+					id="table" lazy="true" var="servico"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="15,25,50">
+					<p:column headerText="Nome" styleClass="ui-lg-3">
+						<h:outputText value="#{servico.nome}" />
+					</p:column>
+
+					<p:column headerText="Descrição" styleClass="ui-lg-6">
+						<h:outputText value="#{servico.descricao}" />
+					</p:column>
+
+					<p:column headerText="Situação" styleClass="ui-lg-6">
+						<h:outputText value="#{servico.situacao.name()}" />
+					</p:column>
+
+					<p:column headerText="Preço" styleClass="ui-lg-1">
+						<h:outputText value="#{servico.preco}"
+							converter="dinheiroConverter" />
+					</p:column>
+
+					<p:column headerText="Ação" styleClass="ui-lg-1">
+						<p:commandButton icon="fa fa-edit" title="Editar" />
+						<p:commandButton class="botaoExcluir" icon="fa fa-remove"
+							title="Remover"
+							action="#{consultarServicoController.inativar(servico)}">
+							<f:setPropertyActionListener value="#{servico}"
+								target="#{consultarServicoController.consultarServicoView.servicoEdicao}"></f:setPropertyActionListener>
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
+
+			</h:form>
+		</h:body>
+	</ui:define>
 </ui:composition>
 </html>

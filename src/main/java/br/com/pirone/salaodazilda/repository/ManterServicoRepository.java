@@ -10,6 +10,7 @@ import com.uaihebert.uaicriteria.UaiCriteriaFactory;
 
 import br.com.pirone.salaodazilda.config.GenericEntityManager;
 import br.com.pirone.salaodazilda.domain.Servico;
+import br.com.pirone.salaodazilda.enums.SituacaoAtivo;
 
 @RequestScoped
 public class ManterServicoRepository extends GenericEntityManager implements Serializable {
@@ -27,6 +28,11 @@ public class ManterServicoRepository extends GenericEntityManager implements Ser
 		uaiCriteria.andStringLike("descricao", "%"+servico.getDescricao()+"%");
 		uaiCriteria.andGreaterOrEqualTo("preco", servico.getPreco());
 		return uaiCriteria.getResultList();
+	}
+	
+	public void inativar(Servico servico) {
+		servico.setSituacao(SituacaoAtivo.INATIVO);
+		alterar(servico);
 	}
 
 }

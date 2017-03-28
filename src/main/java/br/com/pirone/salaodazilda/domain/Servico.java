@@ -1,8 +1,17 @@
 package br.com.pirone.salaodazilda.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
+
+import br.com.pirone.salaodazilda.enums.SituacaoAtivo;
+import br.com.pirone.salaodazilda.enums.SituacaoAtivoConverter;
 
 
 /**
@@ -23,6 +32,10 @@ public class Servico implements Serializable {
 	private String nome;
 
 	private BigDecimal preco;
+	
+	@NotNull
+	@Convert(converter = SituacaoAtivoConverter.class)
+	private SituacaoAtivo st_ativo;
 
 	public Servico() {
 	}
@@ -57,6 +70,14 @@ public class Servico implements Serializable {
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
+	}
+
+	public SituacaoAtivo getSituacao() {
+		return st_ativo;
+	}
+
+	public void setSituacao(SituacaoAtivo situacao) {
+		this.st_ativo = situacao;
 	}
 
 }
