@@ -13,27 +13,27 @@ import br.com.pirone.salaodazilda.domain.Servico;
 @Named
 @ViewScoped
 public class ConsultarServicoView implements Serializable {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	public ConsultarServicoView() {
-		resultado = new ArrayList<Servico>();
+		//resultado = new ArrayList<Servico>();
 		servico = new Servico();
 	}
-	
+
 	private Servico servico;
-	
+
 	private Servico servicoEdicao;
-	
+
 	private List<Servico> resultado;
-	
+
 	public Servico getServico() {
 		return servico;
 	}
-	
+
 	public void setServico(Servico servico) {
 		this.servico = servico;
 	}

@@ -1,23 +1,61 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ph="http://xmlns.jcp.org/jsf/composite/ph">
+
 <ui:composition template="/WEB-INF/templates/master.xhtml">
-    <ui:define name="corpo">
-        <h:body>
-            <h3>Consultar Cliente</h3>
-            <hr/>
-            <h:form id="consultarCliente">
-                <p:outputLabel for="cpf" value="CPF: "/>
-                <p:inputMask mask="999.999.999-99" id="cpf"/>
+	<ui:define name="corpo">
+		<h:body>
+			<h3>Consultar Cliente</h3>
+			<hr />
+			<h:form id="consultarCliente" prependId="false">
+				<p:growl id="growl" showDetail="false" />
+				
+				<p:outputLabel for="cpf" title="CPF:"/>
+				<p:inputMask mask="999.999.999-99" id="cpf"/>
 
-                <p:outputLabel for="nome" value="Nome: "/>
-                <p:inputText id="nome" maxlength="100" size="100"/>
+				<ph:inputText inputId="nome" label="Nome"
+					value="#{consultarClienteController.consultarClienteView.clienteConsulta.nome}" />
 
-                <p:commandButton id="consultar" value="Consultar"/>
-            </h:form>
-        </h:body>
-    </ui:define>
+				<br />
+
+
+				<p:commandButton id="btConsultar" value="Consultar"
+					action="#{consultarServicoController.consultar()}" update="table" actionListener="#{growlMessages.exclusaoSucesso()}"/>
+				<p:commandButton id="btIncluir" value="Incluir"
+					action="incluirServico.xhtml?faces-redirect=true" />
+
+				<br />
+
+				<p:dataTable paginator="true" rows="15"
+					value="#{consultarClienteController.consultarClienteView.resultado}"
+					id="table" lazy="true" var="cliente"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="15,25,50">
+					<p:column headerText="CPF" styleClass="ui-lg-3">
+						<h:outputText value="#{cliente.cpf}" />
+					</p:column>
+
+					<p:column headerText="Descrição" styleClass="ui-lg-6">
+						<h:outputText value="#{cliente.nome}" />
+					</p:column>
+
+					<p:column headerText="Ação" styleClass="ui-lg-1">
+						<p:commandButton icon="fa fa-edit" title="Editar" actionListener="#{growlMessages.exclusaoSucesso()}"/>
+						<p:commandButton class="botaoExcluir" icon="fa fa-remove"
+							title="Remover" actionListener="#{growlMessages.exclusaoSucesso()}" update="table"
+							action="#{consultarServicoController.inativar(servico)}">
+							<f:setPropertyActionListener value="#{servico}"
+								target="#{consultarServicoController.consultarServicoView.servicoEdicao}" />
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
+
+			</h:form>
+		</h:body>
+	</ui:define>
 </ui:composition>
 </html>

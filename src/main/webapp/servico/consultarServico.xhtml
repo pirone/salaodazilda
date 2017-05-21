@@ -11,7 +11,7 @@
 			<h3>Consultar Serviço</h3>
 			<hr />
 			<h:form id="incluirServico" prependId="false">
-				<p:growl id="growl" showDetail="true" />
+				<p:growl id="growl" showDetail="false" />
 
 				<ph:inputText inputId="nomeServico" label="Nome"
 					value="#{consultarServicoController.consultarServicoView.servico.nome}" />
@@ -22,18 +22,18 @@
 				<ph:inputMoney inputId="preco" label="Preço"
 					value="#{consultarServicoController.consultarServicoView.servico.preco}" />
 
-<!-- 				<p:outputLabel for="cbsituacao" value="Situação" /> -->
-<!-- 				<br/> -->
-<!-- 				<p:selectOneMenu id="cbsituacao" value="#{consultarServicoController.consultarServicoView.servico.situacao}" -->
-<!-- 					style="width:125px"> -->
-<!-- 					<f:selectItem itemLabel="ATIVO" itemValue="situacao.ATIVO" /> -->
-<!-- 					<f:selectItem itemLabel="INATIVO" itemValue="situacao.INATIVO" /> -->
-<!-- 				</p:selectOneMenu> -->
+				<!-- 				<p:outputLabel for="cbsituacao" value="Situação" /> -->
+				<!-- 				<br/> -->
+				<!-- 				<p:selectOneMenu id="cbsituacao" value="#{consultarServicoController.consultarServicoView.servico.situacao}" -->
+				<!-- 					style="width:125px"> -->
+				<!-- 					<f:selectItem itemLabel="ATIVO" itemValue="situacao.ATIVO" /> -->
+				<!-- 					<f:selectItem itemLabel="INATIVO" itemValue="situacao.INATIVO" /> -->
+				<!-- 				</p:selectOneMenu> -->
 				<br />
 
 
 				<p:commandButton id="btConsultar" value="Consultar"
-					action="#{consultarServicoController.consultar()}" update="table" />
+					action="#{consultarServicoController.consultar()}" update="table" actionListener="#{growlMessages.exclusaoSucesso()}"/>
 				<p:commandButton id="btIncluir" value="Incluir"
 					action="incluirServico.xhtml?faces-redirect=true" />
 
@@ -44,7 +44,7 @@
 					id="table" lazy="true" var="servico"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="15,25,50">
-					<p:column headerText="Nome" styleClass="ui-lg-3">
+					<p:column headerText="Nome" styleClass="ui-lg-3" sortBy="#{servico.nome}">
 						<h:outputText value="#{servico.nome}" />
 					</p:column>
 
@@ -52,22 +52,22 @@
 						<h:outputText value="#{servico.descricao}" />
 					</p:column>
 
-					<p:column headerText="Situação" styleClass="ui-lg-6">
+					<p:column headerText="Situação" styleClass="ui-lg-1">
 						<h:outputText value="#{servico.situacao.name()}" />
 					</p:column>
 
-					<p:column headerText="Preço" styleClass="ui-lg-1">
+					<p:column headerText="Preço" styleClass="ui-lg-1" sortBy="#{servico.preco}">
 						<h:outputText value="#{servico.preco}"
 							converter="dinheiroConverter" />
 					</p:column>
 
 					<p:column headerText="Ação" styleClass="ui-lg-1">
-						<p:commandButton icon="fa fa-edit" title="Editar" />
+						<p:commandButton icon="fa fa-edit" title="Editar" actionListener="#{growlMessages.exclusaoSucesso()}"/>
 						<p:commandButton class="botaoExcluir" icon="fa fa-remove"
-							title="Remover"
+							title="Remover" actionListener="#{growlMessages.exclusaoSucesso()}" update="table"
 							action="#{consultarServicoController.inativar(servico)}">
 							<f:setPropertyActionListener value="#{servico}"
-								target="#{consultarServicoController.consultarServicoView.servicoEdicao}"></f:setPropertyActionListener>
+								target="#{consultarServicoController.consultarServicoView.servicoEdicao}" />
 						</p:commandButton>
 					</p:column>
 

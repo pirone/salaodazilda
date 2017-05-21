@@ -11,6 +11,7 @@
         <!-- Vamos usar o provider abaixo: -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>br.com.pirone.salaodazilda.domain.Servico</class>
+        <class>br.com.pirone.salaodazilda.domain.Cliente</class>
 
         <properties>
             <!-- Uma vez que você está usando datasource não é necessário configurar novamente o acesso ao banco -->
