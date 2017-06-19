@@ -13,16 +13,22 @@ import br.com.pirone.salaodazilda.domain.Cliente;
 @ViewScoped
 public class ConsultarClienteView implements Serializable {
 
-	/**
-	 * 
-	 */
+	public ConsultarClienteView() {
+		clienteConsulta = new Cliente();
+	}
+	
 	private static final long serialVersionUID = 1L;
 	
 	private Cliente clienteConsulta;
 	
 	private List<Cliente> resultado;
+	
+
 
 	public Cliente getClienteConsulta() {
+		if (clienteConsulta.getEmail() == null) {
+			clienteConsulta.setEmail("");
+		}
 		return clienteConsulta;
 	}
 

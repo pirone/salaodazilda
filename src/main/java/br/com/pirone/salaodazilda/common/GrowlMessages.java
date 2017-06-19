@@ -10,6 +10,8 @@ import javax.inject.Named;
 public class GrowlMessages {
      
     private String message;
+    
+    FacesContext context = FacesContext.getCurrentInstance();
  
     public String getMessage() {
         return message;
@@ -20,7 +22,6 @@ public class GrowlMessages {
     }
 
 	private void conteudoModal(String titulo, String descricao) {
-		FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(titulo, descricao ));
 	}
      
@@ -35,5 +36,9 @@ public class GrowlMessages {
     
     public void exclusaoSucesso() {
     	conteudoModal("Excluído com sucesso", "");
+    }
+    
+    public void alteracaoSucesso() {
+    	conteudoModal("Alterado com sucesso", "");
     }
 }

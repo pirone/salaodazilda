@@ -6,6 +6,7 @@
 	position: fixed;
 	top: 0;
 	width: 100%;
+	z-index:1;
 }
 
 .topbar {
@@ -51,4 +52,28 @@ body {
 
 .botaoExcluir {
 	background: red !important;
+}
+
+fieldset {
+	border-radius: 5px;
+}
+
+legend {
+	font-family: 'CaviarDreamsBold';
+	font-size: 30px;
+}
+
+@FONT-FACE {
+	font-family: 'Trajan';
+	src: url('#{resource['fonts:TrajanProRegular.ttf']}');
+}
+
+@FONT-FACE {
+	font-family: 'CaviarDreams';
+	src: url('#{resource['fonts:CaviarDreams.ttf']}');
+}
+
+@FONT-FACE {
+	font-family: 'CaviarDreamsBold';
+	src: url('#{resource['fonts:CaviarDreamsBold.ttf']}');
 }

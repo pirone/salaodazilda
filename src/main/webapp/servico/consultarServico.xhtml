@@ -8,39 +8,32 @@
 <ui:composition template="/WEB-INF/templates/master.xhtml">
 	<ui:define name="corpo">
 		<h:body>
-			<h3>Consultar Serviço</h3>
-			<hr />
-			<h:form id="incluirServico" prependId="false">
+		<h:form id="incluirServico" prependId="false">
+			<fieldset>
+			<legend>Consultar Serviço</legend>
+			
 				<p:growl id="growl" showDetail="false" />
 
 				<ph:inputText inputId="nomeServico" label="Nome"
-					value="#{consultarServicoController.consultarServicoView.servico.nome}" />
+					value="#{consultarServicoController.view.servico.nome}" />
 
 				<ph:inputText inputId="descricao" label="Descrição"
-					value="#{consultarServicoController.consultarServicoView.servico.descricao}" />
+					value="#{consultarServicoController.view.servico.descricao}" />
 
 				<ph:inputMoney inputId="preco" label="Preço"
-					value="#{consultarServicoController.consultarServicoView.servico.preco}" />
-
-				<!-- 				<p:outputLabel for="cbsituacao" value="Situação" /> -->
-				<!-- 				<br/> -->
-				<!-- 				<p:selectOneMenu id="cbsituacao" value="#{consultarServicoController.consultarServicoView.servico.situacao}" -->
-				<!-- 					style="width:125px"> -->
-				<!-- 					<f:selectItem itemLabel="ATIVO" itemValue="situacao.ATIVO" /> -->
-				<!-- 					<f:selectItem itemLabel="INATIVO" itemValue="situacao.INATIVO" /> -->
-				<!-- 				</p:selectOneMenu> -->
+					value="#{consultarServicoController.view.servico.preco}" />
 				<br />
 
 
 				<p:commandButton id="btConsultar" value="Consultar"
-					action="#{consultarServicoController.consultar()}" update="table" actionListener="#{growlMessages.exclusaoSucesso()}"/>
+					action="#{consultarServicoController.consultar()}" update="table"/>
 				<p:commandButton id="btIncluir" value="Incluir"
 					action="incluirServico.xhtml?faces-redirect=true" />
 
-				<br />
+			</fieldset>
 
 				<p:dataTable paginator="true" rows="15"
-					value="#{consultarServicoController.consultarServicoView.resultado}"
+					value="#{consultarServicoController.view.resultado}"
 					id="table" lazy="true" var="servico"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="15,25,50">
@@ -62,16 +55,35 @@
 					</p:column>
 
 					<p:column headerText="Ação" styleClass="ui-lg-1">
-						<p:commandButton icon="fa fa-edit" title="Editar" actionListener="#{growlMessages.exclusaoSucesso()}"/>
+						<p:commandButton icon="fa fa-edit" title="Editar"
+							oncomplete="PF('modalAlterar').show(); return false;" update="modal"  >
+							<f:setPropertyActionListener value="#{servico}"
+									target="#{consultarServicoController.view.servicoEdicao}" />
+						</p:commandButton>
 						<p:commandButton class="botaoExcluir" icon="fa fa-remove"
-							title="Remover" actionListener="#{growlMessages.exclusaoSucesso()}" update="table"
+							title="Remover" update="table growl" 
 							action="#{consultarServicoController.inativar(servico)}">
 							<f:setPropertyActionListener value="#{servico}"
-								target="#{consultarServicoController.consultarServicoView.servicoEdicao}" />
+								target="#{consultarServicoController.view.servicoEdicao}" />
 						</p:commandButton>
 					</p:column>
-
 				</p:dataTable>
+				
+				<h:panelGroup id="modal">
+					<p:dialog header="Alterar Serviço" widgetVar="modalAlterar" modal="true" height="200" id="modalx" rendered="#{not empty consultarServicoController.view.servicoEdicao}">
+ 					    <ui:include src="include/dadosServico.xhtml">
+					    	<ui:param name="servico" value="#{consultarServicoController.view.servicoEdicao}" />
+ 					    </ui:include>
+ 					    
+ 					    <p:commandButton id="btAlterar" value="Salvar" action="#{consultarServicoController.alterar()}" actionListener="#{growlMessages.inclusaoSucessoGenerico()}" 
+	                		oncomplete="PF('modalAlterar').hide();" update="table growl"/>
+	                	<p:commandButton id="btVoltar" value="Cancelar" onclick="modalx.hide(); return false;" />
+					</p:dialog> 
+				</h:panelGroup>
+				
+				<p:blockUI trigger="btConsultar table" block="incluirServico">
+					<img src="../resources/images/loading.gif" />
+				</p:blockUI>
 
 			</h:form>
 		</h:body>

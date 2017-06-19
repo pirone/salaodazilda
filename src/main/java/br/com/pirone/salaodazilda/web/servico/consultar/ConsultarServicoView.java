@@ -1,17 +1,15 @@
 package br.com.pirone.salaodazilda.web.servico.consultar;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-
-import org.omnifaces.cdi.ViewScoped;
 
 import br.com.pirone.salaodazilda.domain.Servico;
 
 @Named
-@ViewScoped
+@SessionScoped
 public class ConsultarServicoView implements Serializable {
 
 	/**
@@ -20,7 +18,6 @@ public class ConsultarServicoView implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public ConsultarServicoView() {
-		//resultado = new ArrayList<Servico>();
 		servico = new Servico();
 	}
 

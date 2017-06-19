@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ph="http://xmlns.jcp.org/jsf/composite/ph" >
+      
+<ui:composition template="/WEB-INF/templates/master.xhtml">
+    <ui:define name="corpo">
+        <h:body>
+            <fieldset>
+            <legend>Alterar Serviço</legend>
+	            <h:form id="alterarServico" prependId="false" >
+	            	<p:growl id="growl" showDetail="false"/> 
+	            	
+					<ui:include src="include/dadosServico.xhtml">
+						<ui:param name="servico" value="#{alterarServicoController.view.servicoEdicao}"/>
+					</ui:include>
+	                
+	                
+	            </h:form>
+            </fieldset>
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

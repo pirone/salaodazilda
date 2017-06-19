@@ -27,6 +27,7 @@ public class ManterServicoRepository extends GenericEntityManager implements Ser
 		uaiCriteria.andStringLike("nome", "%"+servico.getNome()+"%");
 		uaiCriteria.andStringLike("descricao", "%"+servico.getDescricao()+"%");
 		uaiCriteria.andGreaterOrEqualTo("preco", servico.getPreco());
+		uaiCriteria.andEquals("st_ativo", SituacaoAtivo.ATIVO);
 		return uaiCriteria.getResultList();
 	}
 	

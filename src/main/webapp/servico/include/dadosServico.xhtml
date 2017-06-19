@@ -1,0 +1,14 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ph="http://xmlns.jcp.org/jsf/composite/ph" >
+      
+	<ph:inputText inputId="nomeServico" label="Nome" value="#{servico.nome}" required="true" />
+					
+	<ph:inputText inputId="descricao" label="Descrição" value="#{servico.descricao}" required="true" />
+	                
+	<ph:inputMoney inputId="preco" label="Preço" value="#{servico.preco}" required="true" />
+	
+</html>

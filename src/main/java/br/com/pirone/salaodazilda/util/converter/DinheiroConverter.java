@@ -1,4 +1,4 @@
-package br.com.pirone.salaodazilda.util;
+package br.com.pirone.salaodazilda.util.converter;
 
 import java.math.BigDecimal;
 

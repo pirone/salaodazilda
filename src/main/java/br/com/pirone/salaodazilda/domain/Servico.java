@@ -21,6 +21,7 @@ import br.com.pirone.salaodazilda.enums.SituacaoAtivoConverter;
 @Entity
 @NamedQuery(name="Servico.findAll", query="SELECT s FROM Servico s")
 public class Servico implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id

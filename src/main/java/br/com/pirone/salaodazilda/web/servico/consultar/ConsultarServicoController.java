@@ -1,18 +1,18 @@
 package br.com.pirone.salaodazilda.web.servico.consultar;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.omnifaces.cdi.ViewScoped;
-
 import br.com.pirone.salaodazilda.common.GrowlMessages;
 import br.com.pirone.salaodazilda.domain.Servico;
-import br.com.pirone.salaodazilda.service.manterServico.ManterServicoService;
+import br.com.pirone.salaodazilda.service.servico.ManterServicoService;
 
 @Named
-@ViewScoped
+@SessionScoped
 public class ConsultarServicoController implements Serializable {
 
 	/**
@@ -21,7 +21,7 @@ public class ConsultarServicoController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private ConsultarServicoView consultarServicoView;
+	private ConsultarServicoView view;
 
 	@Inject
 	private ManterServicoService servicoService;
@@ -30,28 +30,33 @@ public class ConsultarServicoController implements Serializable {
 	private GrowlMessages growl;
 
 	public ConsultarServicoView getIncluirServicoView() {
-		return consultarServicoView;
+		return view;
 	}
 
-	public void setIncluirServicoView(ConsultarServicoView consultarServicoView) {
+	public ConsultarServicoView getView() {
+		return view;
+	}
 
-		this.consultarServicoView = consultarServicoView;
+	public void setView(ConsultarServicoView view) {
+		this.view = view;
 	}
 
 	public void consultar() {
-		consultarServicoView.setResultado(servicoService.consultar(consultarServicoView.getServico()));
+		if(view.getServico().getPreco() == null) {
+			view.getServico().setPreco(new BigDecimal(0));
+		}
+		view.setResultado(servicoService.consultar(view.getServico()));
 	}
 
 	public void inativar(Servico servico) {
 		servicoService.inativar(servico);
 		growl.exclusaoSucesso();
 	}
-
-	public ConsultarServicoView getConsultarServicoView() {
-		return consultarServicoView;
+	
+	public void alterar() {
+		servicoService.alterar(this.view.getServicoEdicao());
+		growl.alteracaoSucesso();
 	}
 
-	public void setConsultarServicoView(ConsultarServicoView consultarServicoView) {
-		this.consultarServicoView = consultarServicoView;
-	}
+
 }

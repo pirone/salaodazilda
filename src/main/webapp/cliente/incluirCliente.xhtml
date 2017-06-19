@@ -8,21 +8,30 @@
 <ui:composition template="/WEB-INF/templates/master.xhtml">
     <ui:define name="corpo">
         <h:body>
-            <h3>Incluir Serviço</h3>
-            <hr/>
-            <h:form id="incluirServico" prependId="false" >
-            	<p:growl id="growl" showDetail="false"/> 
-            	
-            	<ph:inputText inputId="nomeServico" label="Nome" size="100" value="#{manterServicoController.servicoInclusao.nome}" required="true" />
-				
-				<ph:inputText inputId="descricao" label="Descrição"  size="150" value="#{manterServicoController.servicoInclusao.descricao}" required="true" />
-                
-                <ph:inputMoney inputId="preco" label="Preço" value="#{manterServicoController.servicoInclusao.preco}" required="true" />
-                <br/>
-                
-                <p:commandButton id="btIncluir" value="Incluir" action="#{manterServicoController.incluirServico()}" actionListener="#{growlMessages.inclusaoSucessoGenerico()}" update="incluirServico"/>
-                <p:commandButton id="btVoltar" value="Voltar" onclick="window.history.back();" />
+            <fieldset>
+            <legend>Incluir Cliente</legend>
+	            <h:form id="incluirClienteForm" prependId="false" >
+	            	<p:growl id="growl" showDetail="false"/> 
+	            	
+	            	<p:outputLabel for="cpf" value="CPF:"/>
+	            	<br/>
+	            	<p:inputMask mask="999.999.999-99" id="cpf" label="CPF:" value="#{incluirClienteController.view.clienteInclusao.cpf}" converter="cpfConverter"/>
+					
+					<ph:inputText inputId="nome" label="Nome" value="#{incluirClienteController.view.clienteInclusao.nome}" required="true" />
+	                
+	                <p:outputLabel for="dtNascimento"  value="Data de Nascimento"/>
+	                <br/>
+	                <p:inputMask mask="99/99/9999" id="dtNascimento" label="Data de Nascimento:" value="#{incluirClienteController.view.clienteInclusao.dtNascimento}" converter="dateConverter"/>
+	                
+	                <ph:inputText inputId="email" label="Email" value="#{incluirClienteController.view.clienteInclusao.email}" />
+	                
+	                <ph:inputText inputId="endereco" label="Endereço" value="#{incluirClienteController.view.clienteInclusao.endereco}" required="true"/>
+	                <br/>
+	                
+	                <p:commandButton id="btIncluir" value="Incluir" action="#{incluirClienteController.incluir()}" actionListener="#{growlMessages.inclusaoSucessoGenerico()}" update="incluirClienteForm"/>
+	                <p:commandButton id="btVoltar" value="Voltar" onclick="window.history.back();" />
             </h:form>
+            </fieldset>
         </h:body>
     </ui:define>
 </ui:composition>
