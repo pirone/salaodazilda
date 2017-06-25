@@ -5,10 +5,16 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ph="http://xmlns.jcp.org/jsf/composite/ph" >
       
-	<ph:inputText inputId="nomeServico" label="Nome" value="#{servico.nome}" required="true" />
+	<ph:inputText inputId="nomeServico" label="Nome" value="#{servicoTO.servico.nome}" required="true" />
 					
-	<ph:inputText inputId="descricao" label="Descrição" value="#{servico.descricao}" required="true" />
+	<ph:inputText inputId="descricao" label="Descrição" value="#{servicoTO.servico.descricao}" required="true" />
 	                
-	<ph:inputMoney inputId="preco" label="Preço" value="#{servico.preco}" required="true" />
+	<ph:inputMoney inputId="preco" label="Preço" value="#{servicoTO.servico.preco}" required="true" />
+	
+	<p:outputLabel for="cbCategoria" value="Categoria:"/>
+	<br/>
+	<p:selectOneMenu id="cbCategoria" label="Categoria" value="#{servicoTO.servico.categoria}" autoWidth="false" converter="generic">
+		<f:selectItems value="#{servicoTO.categorias}" var="categoria" itemValue="#{this}" itemLabel="#{categoria.nome}"/>
+	</p:selectOneMenu>
 	
 </html>

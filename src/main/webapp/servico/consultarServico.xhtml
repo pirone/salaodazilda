@@ -15,25 +15,25 @@
 				<p:growl id="growl" showDetail="false" />
 
 				<ph:inputText inputId="nomeServico" label="Nome"
-					value="#{consultarServicoController.view.servico.nome}" />
+					value="#{manterServicoController.consultarView.servico.nome}" />
 
 				<ph:inputText inputId="descricao" label="Descrição"
-					value="#{consultarServicoController.view.servico.descricao}" />
+					value="#{manterServicoController.consultarView.servico.descricao}" />
 
 				<ph:inputMoney inputId="preco" label="Preço"
-					value="#{consultarServicoController.view.servico.preco}" />
+					value="#{manterServicoController.consultarView.servico.preco}" />
 				<br />
 
 
 				<p:commandButton id="btConsultar" value="Consultar"
-					action="#{consultarServicoController.consultar()}" update="table"/>
+					action="#{manterServicoController.consultar()}" update="table"/>
 				<p:commandButton id="btIncluir" value="Incluir"
 					action="incluirServico.xhtml?faces-redirect=true" />
 
 			</fieldset>
 
 				<p:dataTable paginator="true" rows="15"
-					value="#{consultarServicoController.view.resultado}"
+					value="#{manterServicoController.consultarView.resultado}"
 					id="table" lazy="true" var="servico"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="15,25,50">
@@ -49,30 +49,34 @@
 						<h:outputText value="#{servico.situacao.name()}" />
 					</p:column>
 
-					<p:column headerText="Preço" styleClass="ui-lg-1" sortBy="#{servico.preco}">
+					<p:column headerText="Preço" styleClass="ui-lg-1">
 						<h:outputText value="#{servico.preco}"
 							converter="dinheiroConverter" />
+					</p:column>
+					
+					<p:column headerText="Categoria" styleClass="ui-lg-1">
+						<h:outputText value="#{servico.categoria.nome}"/>
 					</p:column>
 
 					<p:column headerText="Ação" styleClass="ui-lg-1">
 						<p:commandButton icon="fa fa-edit" title="Editar"
 							oncomplete="PF('modalAlterar').show(); return false;" update="modal"  >
 							<f:setPropertyActionListener value="#{servico}"
-									target="#{consultarServicoController.view.servicoEdicao}" />
+									target="#{manterServicoController.consultarView.servicoEdicao}" />
 						</p:commandButton>
 						<p:commandButton class="botaoExcluir" icon="fa fa-remove"
 							title="Remover" update="table growl" 
 							action="#{consultarServicoController.inativar(servico)}">
 							<f:setPropertyActionListener value="#{servico}"
-								target="#{consultarServicoController.view.servicoEdicao}" />
+								target="#{manterServicoController.consultarView.servicoEdicao}" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 				
 				<h:panelGroup id="modal">
-					<p:dialog header="Alterar Serviço" widgetVar="modalAlterar" modal="true" height="200" id="modalx" rendered="#{not empty consultarServicoController.view.servicoEdicao}">
+					<p:dialog header="Alterar Serviço" widgetVar="modalAlterar" modal="true" height="200" id="modalx" rendered="#{not empty manterServicoController.consultarView.servicoEdicao}">
  					    <ui:include src="include/dadosServico.xhtml">
-					    	<ui:param name="servico" value="#{consultarServicoController.view.servicoEdicao}" />
+					    	<ui:param name="servico" value="#{manterServicoController.consultarView.servicoEdicao}" />
  					    </ui:include>
  					    
  					    <p:commandButton id="btAlterar" value="Salvar" action="#{consultarServicoController.alterar()}" actionListener="#{growlMessages.inclusaoSucessoGenerico()}" 

@@ -18,12 +18,15 @@ public class DateConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		try {
-			date = formatter.parse(value);
-		} catch (ParseException e) {
-			e.printStackTrace();
+		if (!value.isEmpty()) {
+			try {
+				date = formatter.parse(value);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
 		return date;
+		
 	}
 
 	@Override

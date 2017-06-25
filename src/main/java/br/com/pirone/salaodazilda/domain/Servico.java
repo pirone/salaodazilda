@@ -6,10 +6,15 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
+import br.com.pirone.salaodazilda.common.GenericEntity;
 import br.com.pirone.salaodazilda.enums.SituacaoAtivo;
 import br.com.pirone.salaodazilda.enums.SituacaoAtivoConverter;
 
@@ -20,19 +25,25 @@ import br.com.pirone.salaodazilda.enums.SituacaoAtivoConverter;
  */
 @Entity
 @NamedQuery(name="Servico.findAll", query="SELECT s FROM Servico s")
-public class Servico implements Serializable {
+public class Servico implements Serializable, GenericEntity {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idservico")
-	private int idServico;
+	private Integer id;
 
 	private String descricao;
 
 	private String nome;
 
 	private BigDecimal preco;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
+	private CategoriaServico categoria;
 	
 	@NotNull
 	@Convert(converter = SituacaoAtivoConverter.class)
@@ -41,12 +52,12 @@ public class Servico implements Serializable {
 	public Servico() {
 	}
 
-	public int getIdServico() {
-		return this.idServico;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setIdServico(int idServico) {
-		this.idServico = idServico;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getDescricao() {
@@ -71,6 +82,14 @@ public class Servico implements Serializable {
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
+	}
+
+	public CategoriaServico getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaServico categoria) {
+		this.categoria = categoria;
 	}
 
 	public SituacaoAtivo getSituacao() {

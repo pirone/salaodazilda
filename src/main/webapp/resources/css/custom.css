@@ -63,6 +63,19 @@ legend {
 	font-size: 30px;
 }
 
+.ui-button {
+	margin: 5px;
+}
+
+.input {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+input{
+	width: 100%;
+}
+
 @FONT-FACE {
 	font-family: 'Trajan';
 	src: url('#{resource['fonts:TrajanProRegular.ttf']}');

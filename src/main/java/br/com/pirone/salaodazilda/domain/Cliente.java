@@ -10,6 +10,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.com.pirone.salaodazilda.common.GenericEntity;
+
 
 /**
  * The persistent class for the cliente database table.
@@ -17,11 +19,12 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c")
-public class Cliente implements Serializable {
+public class Cliente implements Serializable, GenericEntity {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
 	private String cpf;
 
@@ -38,7 +41,7 @@ public class Cliente implements Serializable {
 	public Cliente() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 

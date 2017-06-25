@@ -10,6 +10,7 @@ import javax.inject.Named;
 import br.com.pirone.salaodazilda.common.GrowlMessages;
 import br.com.pirone.salaodazilda.domain.Servico;
 import br.com.pirone.salaodazilda.service.servico.ManterServicoService;
+import br.com.pirone.salaodazilda.web.servico.ConsultarServicoView;
 
 @Named
 @SessionScoped

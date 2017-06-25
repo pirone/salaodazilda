@@ -20,10 +20,10 @@
 
 <composite:implementation>
 	<h:body>
-		<div class="#{cc.attrs.classCss}">
+		<div class="#{cc.attrs.classCss} input">
 			<p:outputLabel for="#{cc.attrs.inputId}" value="#{cc.attrs.label}: "/>
 			<br/>
-		    <p:inputText id="#{cc.attrs.inputId}" maxlength="#{cc.attrs.max}" size="#{cc.attrs.size}" value="#{cc.attrs.value}" required="#{cc.attrs.required}" 
+		    <p:inputText id="#{cc.attrs.inputId}" maxlength="#{cc.attrs.max}" size="#{cc.attrs.size}" value="#{cc.attrs.value}" required="#{cc.attrs.required}"
 		    	requiredMessage="#{cc.attrs.label} obrigatório."/>
 		    <p:message for="#{cc.attrs.inputId}" display="tooltip"/>
 	    </div>

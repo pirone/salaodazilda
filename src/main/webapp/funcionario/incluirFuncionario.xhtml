@@ -13,45 +13,11 @@
 	            <h:form id="incluirFuncionarioForm" prependId="false" >
 	            	<p:growl id="growl" showDetail="false"/> 
 	            	
-	            	<fieldset>
-		            <legend>Dados Pessoais</legend>
+		            	<ui:include src="include/dadosFuncionario.xhtml">
+		            		<ui:param name="funcionario" value="#{incluirFuncionarioController.view.funcionarioInclusao}" />
+		            	</ui:include>
 		            	
-		            	<p:outputLabel for="cpf" value="CPF:"/>
-		            	<br/>
-		            	<p:inputMask mask="999.999.999-99" id="cpf" label="CPF:" value="#{incluirFuncionarioController.view.funcionarioInclusao.cpf}" converter="cpfConverter"/>
-						
-						<ph:inputText inputId="nome" label="Nome" value="#{incluirFuncionarioController.view.funcionarioInclusao.nome}" required="true" />
-		                
-		                <p:outputLabel for="dtNascimento"  value="Data de Nascimento"/>
-		                <br/>
-		                <p:inputMask mask="99/99/9999" id="dtNascimento" label="Data de Nascimento:" value="#{incluirFuncionarioController.view.funcionarioInclusao.dtNascimento}" converter="dateConverter"/>
-		                
-		                <ph:inputText inputId="email" label="Email" value="#{incluirFuncionarioController.view.funcionarioInclusao.email}" />
-		                
-		                <ph:inputText inputId="endereco" label="Endereço" value="#{incluirFuncionarioController.view.funcionarioInclusao.endereco}" required="true"/>
-		                
-		                <p:outputLabel for="comissao" value="Comissão:"/>
-		                <br />
-		                <p:inputNumber id="comissao" value="#{incluirFuncionarioController.view.funcionarioInclusao.taxaComissao}" symbol="%" symbolPosition="s" emptyValue="empty" required="true" 
-		                	decimalSeparator="," thousandSeparator="." />
-	                </fieldset>
-	                <fieldset>
-		            <legend>Contatos</legend>
-		                <p:outputLabel for="telcelular"  value="Celular:"/>
-		                <br/>
-		                <p:inputMask mask="(99) 9999-9999" id="telcelular" value="#{incluirFuncionarioController.view.funcionarioInclusao.telefone1}" converter="telefoneConverter" required="true"/>
-		                <br/>
-		                
-		                <p:outputLabel for="telfixo"  value="Telefone Fixo:"/>
-		                <br/>
-		                <p:inputMask mask="(99) 9999-9999" id="telfixo" value="#{incluirFuncionarioController.view.funcionarioInclusao.telefone2}" converter="telefoneConverter" required="true"/>
-		                <br/>
-		                
-		                <p:outputLabel for="tel3"  value="Outro Telefone:"/>
-		                <br/>
-		                <p:inputMask mask="(99) 9999-9999" id="tel3" value="#{incluirFuncionarioController.view.funcionarioInclusao.telefone3}" converter="telefoneConverter"/>
-		                <br/>
-	                </fieldset>
+		            	
 	                <p:commandButton id="btIncluir" value="Incluir" action="#{incluirFuncionarioController.incluir()}" actionListener="#{growlMessages.inclusaoSucessoGenerico()}" update="incluirFuncionarioForm"/>
 	                <p:commandButton id="btVoltar" value="Voltar" onclick="window.history.back();" />
             </h:form>

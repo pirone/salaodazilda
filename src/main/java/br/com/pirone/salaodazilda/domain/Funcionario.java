@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import br.com.pirone.salaodazilda.common.GenericEntity;
 import br.com.pirone.salaodazilda.enums.SituacaoAtivo;
 import br.com.pirone.salaodazilda.enums.SituacaoAtivoConverter;
 
@@ -22,11 +23,12 @@ import br.com.pirone.salaodazilda.enums.SituacaoAtivoConverter;
  */
 @Entity
 @NamedQuery(name="Funcionario.findAll", query="SELECT c FROM Funcionario c")
-public class Funcionario implements Serializable {
+public class Funcionario implements Serializable, GenericEntity {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Integer id;
 
 	private String cpf;
 
@@ -52,7 +54,7 @@ public class Funcionario implements Serializable {
 	@Convert(converter = SituacaoAtivoConverter.class)
 	private SituacaoAtivo st_ativo;
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
@@ -136,7 +138,7 @@ public class Funcionario implements Serializable {
 		return st_ativo;
 	}
 
-	public void setSt_ativo(SituacaoAtivo st_ativo) {
+	public void setSituacao(SituacaoAtivo st_ativo) {
 		this.st_ativo = st_ativo;
 	}
 

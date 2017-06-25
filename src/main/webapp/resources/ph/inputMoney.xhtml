@@ -15,11 +15,12 @@
     <composite:attribute name="max" required="false" default="50"/>
     <composite:attribute name="size" required="false"/>
     <composite:attribute name="required" default="false"/>
+    <composite:attribute name="classCss" required="false"/>
 </composite:interface>
 
 <composite:implementation>
 	<h:body>
-		<div>
+		<div classCss="#{cc.attrs.classCss} input">
 			<p:outputLabel for="#{cc.attrs.inputId}" value="#{cc.attrs.label}: "/>
 			<br/>
 		    <p:inputNumber id="#{cc.attrs.inputId}" maxlength="#{cc.attrs.max}" size="#{cc.attrs.size}" value="#{cc.attrs.value}" required="#{cc.attrs.required}" 

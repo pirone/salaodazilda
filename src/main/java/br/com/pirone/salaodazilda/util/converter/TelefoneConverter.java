@@ -14,7 +14,7 @@ public class TelefoneConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		value = value.replace("(", "").replace(")", "").replace("-", "");
+		value = value.replace("(", "").replace(")", "").replace("-", "").replace(" ", "");
 		return value;
 	}
 
