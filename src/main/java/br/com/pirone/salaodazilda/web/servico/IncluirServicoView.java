@@ -2,13 +2,14 @@ package br.com.pirone.salaodazilda.web.servico;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
+
+import org.omnifaces.cdi.ViewScoped;
 
 import br.com.pirone.salaodazilda.to.ServicoTO;
 
 @Named
-@ConversationScoped
+@ViewScoped
 public class IncluirServicoView implements Serializable {
 
 	/**

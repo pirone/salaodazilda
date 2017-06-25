@@ -1,4 +1,4 @@
-package br.com.pirone.salaodazilda.web.cliente.consultar;
+package br.com.pirone.salaodazilda.web.cliente;
 
 import java.io.Serializable;
 import java.util.List;

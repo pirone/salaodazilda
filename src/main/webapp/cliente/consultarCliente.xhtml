@@ -8,34 +8,39 @@
 <ui:composition template="/WEB-INF/templates/master.xhtml">
 	<ui:define name="corpo">
 		<h:body>
-		<h:form id="consultarCliente" prependId="false">
+		<h:form id="consultarClienteForm" prependId="false">
 			<fieldset>
 			<legend>Consultar Cliente</legend>		
 				<p:growl id="growl" showDetail="false" />
 				
-				<p:outputLabel for="cpf" value="CPF:"/>
-				<br/>
-				<p:inputMask mask="999.999.999-99" id="cpf" label="CPF:" converter="cpfConverter" value="#{consultarClienteController.view.clienteConsulta.cpf}"/>
+				<div class="ui-md-3">
+					<p:outputLabel for="cpf" value="CPF:"/>
+					<br/>
+					<p:inputMask mask="999.999.999-99" id="cpf" label="CPF:" validator="CpfValidator"
+						converter="cpfConverter" value="#{manterClienteController.consultarView.clienteConsulta.cpf}"/>
+				</div>
 
-				<ph:inputText inputId="nome" label="Nome"
-					value="#{consultarClienteController.view.clienteConsulta.nome}" />
+				<div class="ui-md-5">
+					<ph:inputText inputId="nome" label="Nome"
+						value="#{manterClienteController.consultarView.clienteConsulta.nome}" />
+				</div>
 					
-				<ph:inputText inputId="email" label="Email" value="#{consultarClienteController.view.clienteConsulta.email}" />
+				<ph:inputText inputId="email" label="Email" value="#{manterClienteController.consultarView.clienteConsulta.email}" />
 				
-				<ph:inputText inputId="endereco" label="Endereço" value="#{consultarClienteController.view.clienteConsulta.endereco}"/>
+				<ph:inputText inputId="endereco" label="Endereço" value="#{manterClienteController.consultarView.clienteConsulta.endereco}"/>
 
 				<br />
 
 
 				<p:commandButton id="btConsultar" value="Consultar"
-					action="#{consultarClienteController.consultar()}" update="table"/>
+					action="#{manterClienteController.consultar()}" update="table consultarClienteForm"/>
 				<p:commandButton id="btIncluir" value="Incluir"
 					action="incluirCliente.xhtml?faces-redirect=true" />
 			</fieldset>
 				<br />
 
 				<p:dataTable paginator="true" rows="15"
-					value="#{consultarClienteController.view.resultado}"
+					value="#{manterClienteController.consultarView.resultado}"
 					id="table" lazy="true" var="cliente"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="15,25,50">
@@ -63,7 +68,7 @@
 
 			</h:form>
 			
-			<p:blockUI trigger="btConsultar table" block="consultarCliente">
+			<p:blockUI trigger="btConsultar table" block="consultarClienteForm">
 					<img src="../resources/images/loading.gif" />
 				</p:blockUI>
 		</h:body>

@@ -15,20 +15,21 @@
 	            	
 	            	<p:outputLabel for="cpf" value="CPF:"/>
 	            	<br/>
-	            	<p:inputMask mask="999.999.999-99" id="cpf" label="CPF:" value="#{incluirClienteController.view.clienteInclusao.cpf}" converter="cpfConverter"/>
+	            	<p:inputMask mask="999.999.999-99" id="cpf" label="CPF:" value="#{manterClienteController.incluirView.clienteInclusao.cpf}" 
+	            		validator="CpfValidator" converter="cpfConverter"/>
 					
-					<ph:inputText inputId="nome" label="Nome" value="#{incluirClienteController.view.clienteInclusao.nome}" required="true" />
+					<ph:inputText inputId="nome" label="Nome" value="#{manterClienteController.incluirView.clienteInclusao.nome}" required="true" />
 	                
 	                <p:outputLabel for="dtNascimento"  value="Data de Nascimento"/>
 	                <br/>
-	                <p:inputMask mask="99/99/9999" id="dtNascimento" label="Data de Nascimento:" value="#{incluirClienteController.view.clienteInclusao.dtNascimento}" converter="dateConverter"/>
+	                <p:inputMask mask="99/99/9999" id="dtNascimento" label="Data de Nascimento:" value="#{manterClienteController.incluirView.clienteInclusao.dtNascimento}" converter="dateConverter"/>
 	                
-	                <ph:inputText inputId="email" label="Email" value="#{incluirClienteController.view.clienteInclusao.email}" />
+	                <ph:inputText inputId="email" label="Email" value="#{manterClienteController.incluirView.clienteInclusao.email}" />
 	                
-	                <ph:inputText inputId="endereco" label="Endereço" value="#{incluirClienteController.view.clienteInclusao.endereco}" required="true"/>
+	                <ph:inputText inputId="endereco" label="Endereço" value="#{manterClienteController.incluirView.clienteInclusao.endereco}" required="true"/>
 	                <br/>
 	                
-	                <p:commandButton id="btIncluir" value="Incluir" action="#{incluirClienteController.incluir()}" actionListener="#{growlMessages.inclusaoSucessoGenerico()}" update="incluirClienteForm"/>
+	                <p:commandButton id="btIncluir" value="Incluir" action="#{manterClienteController.incluir()}" actionListener="#{growlMessages.inclusaoSucessoGenerico()}" update="incluirClienteForm"/>
 	                <p:commandButton id="btVoltar" value="Voltar" onclick="window.history.back();" />
             </h:form>
             </fieldset>
