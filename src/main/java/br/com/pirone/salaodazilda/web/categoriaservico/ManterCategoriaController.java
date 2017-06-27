@@ -7,10 +7,12 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.omnifaces.cdi.ViewScoped;
+
 import br.com.pirone.salaodazilda.service.categoriaservico.ManterCategoriaService;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class ManterCategoriaController implements Serializable {
 
 	/**
@@ -47,8 +49,10 @@ public class ManterCategoriaController implements Serializable {
 		this.consultarView.setResultado(service.consultar());
 	}
 	
-	public void incluir() {
+	public String incluir() {
 		service.incluir(incluirView.getCategoriaInclusao());
+		
+		return "consultarCategoria";
 	}
 	
 	

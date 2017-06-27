@@ -5,10 +5,12 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import org.omnifaces.cdi.ViewScoped;
+
 import br.com.pirone.salaodazilda.domain.CategoriaServico;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class IncluirCategoriaView implements Serializable {
 
 	private static final long serialVersionUID = 1L;

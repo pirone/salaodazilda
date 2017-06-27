@@ -15,27 +15,27 @@
 				
 				<p:outputLabel for="cpf" value="CPF:"/>
 				<br/>
-				<p:inputMask mask="999.999.999-99" id="cpf" label="CPF:" converter="cpfConverter" value="#{consultarFuncionarioController.view.funcionarioConsulta.cpf}"/>
+				<p:inputMask mask="999.999.999-99" id="cpf" label="CPF:" converter="cpfConverter" value="#{manterFuncionarioController.consultarView.funcionarioConsulta.cpf}"/>
 
 				<ph:inputText inputId="nome" label="Nome"
-					value="#{consultarFuncionarioController.view.funcionarioConsulta.nome}" />
+					value="#{manterFuncionarioController.consultarView.funcionarioConsulta.nome}" />
 					
-				<ph:inputText inputId="email" label="Email" value="#{consultarFuncionarioController.view.funcionarioConsulta.email}" />
+				<ph:inputText inputId="email" label="Email" value="#{manterFuncionarioController.consultarView.funcionarioConsulta.email}" />
 				
-				<ph:inputText inputId="endereco" label="Endereço" value="#{consultarFuncionarioController.view.funcionarioConsulta.endereco}"/>
+				<ph:inputText inputId="endereco" label="Endereço" value="#{manterFuncionarioController.consultarView.funcionarioConsulta.endereco}"/>
 
 				<br />
 
 
 				<p:commandButton id="btConsultar" value="Consultar"
-					action="#{consultarFuncionarioController.consultar()}" update="table"/>
+					action="#{manterFuncionarioController.consultar()}" update="table"/>
 				<p:commandButton id="btIncluir" value="Incluir"
 					action="incluirFuncionario.xhtml?faces-redirect=true" />
 			</fieldset>
 				<br />
 
 				<p:dataTable paginator="true" rows="15"
-					value="#{consultarFuncionarioController.view.resultado}"
+					value="#{manterFuncionarioController.consultarView.resultado}"
 					id="table" lazy="true" var="funcionario"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="15,25,50">

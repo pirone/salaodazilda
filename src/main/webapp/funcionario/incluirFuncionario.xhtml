@@ -14,11 +14,11 @@
 	            	<p:growl id="growl" showDetail="false"/> 
 	            	
 		            	<ui:include src="include/dadosFuncionario.xhtml">
-		            		<ui:param name="funcionario" value="#{incluirFuncionarioController.view.funcionarioInclusao}" />
+		            		<ui:param name="funcionario" value="#{manterFuncionarioController.incluirView.funcionarioInclusao}" />
 		            	</ui:include>
 		            	
 		            	
-	                <p:commandButton id="btIncluir" value="Incluir" action="#{incluirFuncionarioController.incluir()}" actionListener="#{growlMessages.inclusaoSucessoGenerico()}" update="incluirFuncionarioForm"/>
+	                <p:commandButton id="btIncluir" value="Incluir" action="#{manterFuncionarioController.incluir()}" actionListener="#{growlMessages.inclusaoSucessoGenerico()}" update="incluirFuncionarioForm"/>
 	                <p:commandButton id="btVoltar" value="Voltar" onclick="window.history.back();" />
             </h:form>
             </fieldset>
