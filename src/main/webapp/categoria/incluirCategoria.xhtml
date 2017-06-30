@@ -22,9 +22,9 @@
 				<br />
 
 
-				<p:commandButton id="btIncluir" value="Incluir"
+				<p:commandButton id="btIncluir" value="Incluir" actionListener="#{growlMessages.inclusaoSucessoGenerico()}" update="incluirCategoriaForm"
 					action="#{manterCategoriaController.incluir()}"/>
-				<p:commandButton id="btCancelar" value="Cancelar"
+				<p:commandButton id="btCancelar" value="Cancelar" 
 					action="consultarCategoria.xhtml?faces-redirect=true" />
 
 			</fieldset>
