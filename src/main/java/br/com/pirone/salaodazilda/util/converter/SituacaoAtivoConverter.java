@@ -1,7 +1,9 @@
-package br.com.pirone.salaodazilda.enums;
+package br.com.pirone.salaodazilda.util.converter;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
+
+import br.com.pirone.salaodazilda.enums.SituacaoAtivo;
 
 @Converter(autoApply=true)
 public class SituacaoAtivoConverter implements AttributeConverter<SituacaoAtivo, String> {

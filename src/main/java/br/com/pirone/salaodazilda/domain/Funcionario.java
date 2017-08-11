@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 
 import br.com.pirone.salaodazilda.common.GenericEntity;
 import br.com.pirone.salaodazilda.enums.SituacaoAtivo;
-import br.com.pirone.salaodazilda.enums.SituacaoAtivoConverter;
+import br.com.pirone.salaodazilda.util.converter.SituacaoAtivoConverter;
 
 
 /**

@@ -82,6 +82,7 @@ public class ManterServicoController implements Serializable {
 
 	public void incluirServico() {
 		servicoService.incluir(incluirView.getServicoInclusao().getServico());
+		this.incluirView.setServicoInclusao(new ServicoTO());
 	}
 	
 	public void consultar() {

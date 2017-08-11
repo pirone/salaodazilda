@@ -10,6 +10,7 @@ import com.uaihebert.uaicriteria.UaiCriteriaFactory;
 
 import br.com.pirone.salaodazilda.config.GenericEntityManager;
 import br.com.pirone.salaodazilda.domain.Funcionario;
+import br.com.pirone.salaodazilda.enums.SituacaoAtivo;
 
 @RequestScoped
 public class ManterFuncionarioRepository extends GenericEntityManager implements Serializable{
@@ -23,6 +24,11 @@ public class ManterFuncionarioRepository extends GenericEntityManager implements
 		.andStringLike("nome", "%"+funcionario.getNome()+"%")
 		.andStringLike("email", "%"+funcionario.getEmail()+"%")
 		.andStringLike("endereco", "%"+funcionario.getEndereco()+"%");
+		return uaiCriteria.getResultList();
+	}
+	
+	public List<Funcionario> listarAtivos() {
+		uaiCriteria.andEquals("st_ativo", SituacaoAtivo.ATIVO);
 		return uaiCriteria.getResultList();
 	}
 

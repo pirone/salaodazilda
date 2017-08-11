@@ -35,5 +35,10 @@ public class ManterServicoRepository extends GenericEntityManager implements Ser
 		servico.setSituacao(SituacaoAtivo.INATIVO);
 		alterar(servico);
 	}
+	
+	public List<Servico> listarAtivos() {
+		uaiCriteria.andEquals("st_ativo", SituacaoAtivo.ATIVO);
+		return uaiCriteria.getResultList();
+	}
 
 }
