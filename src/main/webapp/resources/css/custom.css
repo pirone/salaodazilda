@@ -76,6 +76,11 @@ input{
 	width: 100%;
 }
 
+div[class^='ui-md-'] {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
 @FONT-FACE {
 	font-family: 'Trajan';
 	src: url('#{resource['fonts:TrajanProRegular.ttf']}');

@@ -30,6 +30,7 @@ public class Funcionario implements Serializable, GenericEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(name="id_funcionario")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 

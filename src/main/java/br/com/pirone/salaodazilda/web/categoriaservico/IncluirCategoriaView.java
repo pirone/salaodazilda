@@ -2,7 +2,6 @@ package br.com.pirone.salaodazilda.web.categoriaservico;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;

@@ -6,15 +6,17 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.com.pirone.salaodazilda.common.GenericEntity;
-import br.com.pirone.salaodazilda.enums.FormaPagamento;
 import br.com.pirone.salaodazilda.enums.TipoLancamento;
 
 
@@ -23,8 +25,9 @@ import br.com.pirone.salaodazilda.enums.TipoLancamento;
  * 
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @NamedQuery(name="Lancamento.findAll", query="SELECT c FROM Lancamento c")
-public class Lancamento implements Serializable, GenericEntity {
+public abstract class Lancamento implements Serializable, GenericEntity {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -33,24 +36,10 @@ public class Lancamento implements Serializable, GenericEntity {
 	@Column(name = "id_lancamento")
 	private Integer id;
 	
-	@Column(name = "id_funcionario")
-	private Funcionario funcionario;
-	
-	@Column(name = "id_cliente")
-	private Cliente cliente;
-	
-	@Column(name = "id_servico")
-	private Servico servico;
-	
 	@Column(name = "valor_lancamento")
 	private BigDecimal valorLancamento;
 	
-	@Column(name = "observacao")
-	private String observacao;
-	
-	@Column(name = "forma_pagamento")
-	private FormaPagamento formaPagamento;
-	
+	@Enumerated
 	@Column(name = "tipo_lancamento")
 	private TipoLancamento tipoLancamento;
 	
@@ -58,9 +47,8 @@ public class Lancamento implements Serializable, GenericEntity {
 	@Column(name = "dt_lancamento")
 	private Date dataLancamento;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "dt_registro")
-	private Date dataRegistro;
+	@Column(name = "observacao")
+	private String observacao;
 
 	public Lancamento() {
 	}
@@ -71,30 +59,6 @@ public class Lancamento implements Serializable, GenericEntity {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public Servico getServico() {
-		return servico;
-	}
-
-	public void setServico(Servico servico) {
-		this.servico = servico;
 	}
 
 	public BigDecimal getValorLancamento() {
@@ -111,14 +75,6 @@ public class Lancamento implements Serializable, GenericEntity {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
-	}
-
-	public FormaPagamento getFormaPagamento() {
-		return formaPagamento;
-	}
-
-	public void setFormaPagamento(FormaPagamento formaPagamento) {
-		this.formaPagamento = formaPagamento;
 	}
 
 	public TipoLancamento getTipoLancamento() {
@@ -141,12 +97,5 @@ public class Lancamento implements Serializable, GenericEntity {
 		this.dataLancamento = dataLancamento;
 	}
 
-	public Date getDataRegistro() {
-		return dataRegistro;
-	}
-
-	public void setDataRegistro(Date dataRegistro) {
-		this.dataRegistro = dataRegistro;
-	}
 
 }

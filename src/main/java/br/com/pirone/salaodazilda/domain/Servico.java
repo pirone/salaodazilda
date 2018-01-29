@@ -31,7 +31,7 @@ public class Servico implements Serializable, GenericEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="idservico")
+	@Column(name="id_servico")
 	private Integer id;
 
 	private String descricao;

@@ -1,5 +1,6 @@
 package br.com.pirone.salaodazilda.web.lancamento;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,9 +10,10 @@ import org.omnifaces.cdi.ViewScoped;
 
 import br.com.pirone.salaodazilda.domain.Cliente;
 import br.com.pirone.salaodazilda.domain.Funcionario;
-import br.com.pirone.salaodazilda.domain.Lancamento;
+import br.com.pirone.salaodazilda.domain.LancamentoEntrada;
 import br.com.pirone.salaodazilda.domain.Servico;
-import java.io.Serializable;
+import br.com.pirone.salaodazilda.enums.FormaPagamento;
+import br.com.pirone.salaodazilda.enums.TipoLancamento;
 
 @Named
 @ViewScoped
@@ -23,7 +25,7 @@ public class IncluirLancamentoView implements Serializable {
 	private List<Cliente> listaClientes;
 	private List<Servico> listaServico;
 	
-	private Lancamento lancamentoInclusao;
+	private LancamentoEntrada lancamentoInclusao;
 
 	public List<Funcionario> getListaFuncionarios() {
 		return listaFuncionarios;
@@ -48,13 +50,22 @@ public class IncluirLancamentoView implements Serializable {
 	public void setListaServico(List<Servico> listaServico) {
 		this.listaServico = listaServico;
 	}
+	
+	public TipoLancamento[] getTiposLancamento() {
+		return TipoLancamento.values();
+	}
+	
+	public FormaPagamento[] getFormasPagamento() {
+		return FormaPagamento.values();
+	}
 
-	public Lancamento getLancamentoInclusao() {
+	public LancamentoEntrada getLancamentoInclusao() {
 		return lancamentoInclusao;
 	}
 
-	public void setLancamentoInclusao(Lancamento lancamentoInclusao) {
+	public void setLancamentoInclusao(LancamentoEntrada lancamentoInclusao) {
 		this.lancamentoInclusao = lancamentoInclusao;
 	}
+
 
 }
