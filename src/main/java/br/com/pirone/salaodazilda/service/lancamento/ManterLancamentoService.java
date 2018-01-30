@@ -6,6 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import br.com.pirone.salaodazilda.domain.LancamentoEntrada;
+import br.com.pirone.salaodazilda.enums.TipoLancamento;
 import br.com.pirone.salaodazilda.repository.ManterFuncionarioRepository;
 import br.com.pirone.salaodazilda.repository.ManterLancamentoRepository;
 import br.com.pirone.salaodazilda.repository.ManterServicoRepository;
@@ -36,6 +37,7 @@ public class ManterLancamentoService {
 	
 	public void salvar(LancamentoEntrada lancamento) {
 		lancamento.setDataLancamento(new Date());
+		lancamento.setTipoLancamento(TipoLancamento.CREDITO);
 		repository.incluir(lancamento);
 	}
 

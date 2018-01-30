@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import br.com.pirone.salaodazilda.common.GenericEntity;
@@ -24,6 +25,7 @@ import br.com.pirone.salaodazilda.util.converter.SituacaoAtivoConverter;
  * 
  */
 @Entity
+@Table(name = "servico")
 @NamedQuery(name="Servico.findAll", query="SELECT s FROM Servico s")
 public class Servico implements Serializable, GenericEntity {
 	
@@ -39,7 +41,6 @@ public class Servico implements Serializable, GenericEntity {
 	private String nome;
 
 	private BigDecimal preco;
-	
 	
 	@ManyToOne
 	@JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")

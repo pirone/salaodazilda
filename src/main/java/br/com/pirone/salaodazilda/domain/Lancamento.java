@@ -40,7 +40,7 @@ public abstract class Lancamento implements Serializable, GenericEntity {
 	private BigDecimal valorLancamento;
 	
 	@Enumerated
-	@Column(name = "tipo_lancamento")
+	@Column(name = "tipo_lancamento", nullable = false)
 	private TipoLancamento tipoLancamento;
 	
 	@Temporal(TemporalType.TIMESTAMP)

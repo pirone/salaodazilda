@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -24,6 +25,7 @@ import br.com.pirone.salaodazilda.util.converter.SituacaoAtivoConverter;
  * 
  */
 @Entity
+@Table(name = "funcionario")
 @NamedQuery(name="Funcionario.findAll", query="SELECT c FROM Funcionario c")
 public class Funcionario implements Serializable, GenericEntity {
 	

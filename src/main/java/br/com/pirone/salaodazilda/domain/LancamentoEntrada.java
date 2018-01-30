@@ -11,7 +11,8 @@ import javax.persistence.*;
  *
  */
 @Entity
-@PrimaryKeyJoinColumn(name="id")
+@Table(name = "lancamento_entrada")
+@PrimaryKeyJoinColumn(name="id_lancamento")
 public class LancamentoEntrada extends Lancamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -20,16 +21,19 @@ public class LancamentoEntrada extends Lancamento implements Serializable {
 		super();
 	}
 	
-	@JoinColumn(name = "id_funcionario")
+	@ManyToOne
+	@JoinColumn(name = "id_funcionario", referencedColumnName = "id_funcionario")
 	private Funcionario funcionario;
 	
-	@JoinColumn(name = "id_cliente")
+	@ManyToOne
+	@JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
 	private Cliente cliente;
 	
+	@ManyToOne
 	@JoinColumn(name = "id_servico")
 	private Servico servico;
 	
-	@JoinColumn(name = "forma_pagamento")
+	@Column(name = "forma_pagamento")
 	private FormaPagamento formaPagamento;
 	
 	public Funcionario getFuncionario() {

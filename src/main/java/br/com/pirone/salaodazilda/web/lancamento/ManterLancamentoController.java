@@ -45,6 +45,7 @@ public class ManterLancamentoController implements Serializable {
 	public void salvar() {
 		logger.info("Teste");
 		service.salvar(view.getLancamentoInclusao());
+		this.view.setLancamentoInclusao(new LancamentoEntrada());
 	}
 
 }
