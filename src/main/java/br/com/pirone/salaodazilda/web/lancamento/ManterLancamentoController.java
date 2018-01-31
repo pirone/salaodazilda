@@ -12,10 +12,11 @@ import org.slf4j.LoggerFactory;
 
 import br.com.pirone.salaodazilda.domain.LancamentoEntrada;
 import br.com.pirone.salaodazilda.service.lancamento.ManterLancamentoService;
+import br.com.pirone.salaodazilda.web.BaseController;
 
 @Named
 @ViewScoped
-public class ManterLancamentoController implements Serializable {
+public class ManterLancamentoController extends BaseController implements Serializable {
 	
 	private Logger logger = LoggerFactory.getLogger(ManterLancamentoController.class);
 
@@ -43,9 +44,14 @@ public class ManterLancamentoController implements Serializable {
 	}
 	
 	public void salvar() {
-		logger.info("Teste");
-		service.salvar(view.getLancamentoInclusao());
-		this.view.setLancamentoInclusao(new LancamentoEntrada());
+		try {
+			service.salvar(view.getLancamentoInclusao());
+			this.view.setLancamentoInclusao(new LancamentoEntrada());
+			enviarMensagemSucesso();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			enviarMensagemErro();
+		}
 	}
 
 }

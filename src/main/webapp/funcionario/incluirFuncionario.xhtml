@@ -11,7 +11,7 @@
             <fieldset>
             <legend>Incluir Funcionário</legend>
 	            <h:form id="incluirFuncionarioForm" prependId="false" >
-	            	<p:growl id="growl" showDetail="false"/> 
+	            	<p:growl id="growl" showDetail="true"/> 
 	            	
 		            	<ui:include src="include/dadosFuncionario.xhtml">
 		            		<ui:param name="funcionario" value="#{manterFuncionarioController.incluirView.funcionarioInclusao}" />

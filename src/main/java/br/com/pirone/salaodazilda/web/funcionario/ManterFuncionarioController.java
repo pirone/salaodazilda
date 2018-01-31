@@ -8,11 +8,13 @@ import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
 
+import br.com.pirone.salaodazilda.domain.Funcionario;
 import br.com.pirone.salaodazilda.service.funcionario.ManterFuncionarioService;
+import br.com.pirone.salaodazilda.web.BaseController;
 
 @Named
 @ViewScoped
-public class ManterFuncionarioController implements Serializable {
+public class ManterFuncionarioController extends BaseController implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -51,7 +53,13 @@ public class ManterFuncionarioController implements Serializable {
 	}
 
 	public void incluir() {
-		service.incluir(incluirView.getFuncionarioInclusao());
+		try {
+			service.incluir(incluirView.getFuncionarioInclusao());
+			this.incluirView.setFuncionarioInclusao(new Funcionario());
+		} catch (Exception e) {
+			enviarMensagemErro();
+		}
+		
 	}
 	
 	public void consultar() {

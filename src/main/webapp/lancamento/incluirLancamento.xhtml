@@ -11,19 +11,19 @@
             <p:fieldset legend="Incluir Lançamento">
             	<div class="ui-md-12">
 	            <h:form id="incluirLancamentoForm" prependId="false" >
-	            	<p:growl id="growl" showDetail="false"/> 
+	            	<p:growl id="growl" showDetail="true"/> 
 	            	
 	            	<div class="ui-md-6">
 		            	<p:outputLabel for="cbFuncionario" value="Funcionário:"/>
 		            	<br/>
 			            <p:selectOneMenu id="cbFuncionario" label="Funcionario Responsável:" value="#{manterLancamentoController.view.lancamentoInclusao.funcionario}" converter="generic" 
-			            	filter="true" filterMatchMode="startsWith">
+			            	filter="true" filterMatchMode="startsWith" required="true">
 							<f:selectItems value="#{manterLancamentoController.view.listaFuncionarios}" var="funcionario" itemValue="#{this}" itemLabel="#{funcionario.nome}"/>
 						</p:selectOneMenu>
 			            <br/>
 			            <p:outputLabel for="cbServico" value="Serviço:"/>
 		            	<br/>
-			            <p:selectOneMenu id="cbServico" label="Serviço:" value="#{manterLancamentoController.view.lancamentoInclusao.servico}" autoWidth="true" converter="generic">
+			            <p:selectOneMenu id="cbServico" label="Serviço:" value="#{manterLancamentoController.view.lancamentoInclusao.servico}" autoWidth="true" converter="generic" required="true">
 							<f:selectItems value="#{manterLancamentoController.view.listaServico}" var="servico" itemValue="#{this}" itemLabel="#{servico.nome}"/>
 						</p:selectOneMenu>
 						
@@ -36,7 +36,7 @@
 						</p:selectOneMenu>
 						
 						<div class="ui-md-2">
-							<ph:inputMoney label="Valor" inputId="valorLancamento" value="#{manterLancamentoController.view.lancamentoInclusao.valorLancamento}" />
+							<ph:inputMoney label="Valor" inputId="valorLancamento" value="#{manterLancamentoController.view.lancamentoInclusao.valorLancamento}" required="true" />
 						</div>
 						
 			            <p:outputLabel for="cbFormaPgto" value="Forma de Pagamento"/>
@@ -53,7 +53,7 @@
 		            	
 	               		<br/>
 	               	</div>
-	                <p:commandButton id="btSalvar" value="Salvar" actionListener="#{growlMessages.inclusaoSucessoGenerico()}" update="incluirLancamentoForm" action="#{manterLancamentoController.salvar()}"/>
+	                <p:commandButton id="btSalvar" value="Salvar" update="incluirLancamentoForm" action="#{manterLancamentoController.salvar()}"/>
 	                <p:commandButton id="btVoltar" value="Voltar" onclick="window.history.back();" />
             </h:form>
             </div>

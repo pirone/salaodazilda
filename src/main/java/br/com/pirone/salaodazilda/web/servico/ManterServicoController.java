@@ -14,10 +14,11 @@ import br.com.pirone.salaodazilda.domain.Servico;
 import br.com.pirone.salaodazilda.service.categoriaservico.ManterCategoriaService;
 import br.com.pirone.salaodazilda.service.servico.ManterServicoService;
 import br.com.pirone.salaodazilda.to.ServicoTO;
+import br.com.pirone.salaodazilda.web.BaseController;
 
 @Named
 @ViewScoped
-public class ManterServicoController implements Serializable {
+public class ManterServicoController extends BaseController implements Serializable {
 
 	/**
 	 * 
@@ -81,8 +82,12 @@ public class ManterServicoController implements Serializable {
 	}
 
 	public void incluirServico() {
-		servicoService.incluir(incluirView.getServicoInclusao().getServico());
-		this.incluirView.setServicoInclusao(new ServicoTO());
+		try {
+			servicoService.incluir(incluirView.getServicoInclusao().getServico());
+			this.incluirView.setServicoInclusao(new ServicoTO());
+		} catch (Exception e) {
+			enviarMensagemErro();
+		}
 	}
 	
 	public void consultar() {
