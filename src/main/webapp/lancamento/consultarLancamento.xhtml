@@ -1,0 +1,117 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ph="http://xmlns.jcp.org/jsf/composite/ph">
+
+<ui:composition template="/WEB-INF/templates/master.xhtml">
+	<ui:define name="corpo">
+		<h:body>
+			<p:fieldset legend="Consultar Lançamento">
+				<h:form id="consultarLancamentoForm" prependId="false">
+					<div class="ui-fluid">
+						<p:growl id="growl" showDetail="true" />
+						<p:panelGrid columns="2" columnClasses="ui-grid-col-5"
+							layout="grid" styleClass="ui-panelgrid-blank">
+
+
+							<p:column>
+								<p:outputLabel for="cbFuncionario" value="Funcionário:" />
+								<br />
+								<p:selectOneMenu id="cbFuncionario"
+									label="Funcionario Responsável:"
+									value="#{consultarLancamentoController.view.lancamento.lancamentoEntrada.funcionario}"
+									converter="generic" filter="true" filterMatchMode="startsWith">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems
+										value="#{consultarLancamentoController.view.listaFuncionarios}"
+										var="funcionario" itemValue="#{this}"
+										itemLabel="#{funcionario.nome}" />
+								</p:selectOneMenu>
+								<p:outputLabel for="cbServico" value="Serviço:" />
+								<br />
+								<p:selectOneMenu id="cbServico" label="Serviço:"
+									value="#{consultarLancamentoController.view.lancamento.lancamentoEntrada.servico}"
+									autoWidth="true" converter="generic">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems
+										value="#{consultarLancamentoController.view.listaServico}"
+										var="servico" itemValue="#{this}" itemLabel="#{servico.nome}" />
+								</p:selectOneMenu>
+							</p:column>
+
+							<p:column>
+								<p:outputLabel for="cbCliente" value="Cliente:" />
+								<br />
+								<p:selectOneMenu id="cbCliente"
+									value="#{consultarLancamentoController.view.lancamento.lancamentoEntrada.cliente}"
+									autoWidth="false" converter="generic" filter="true"
+									filterMatchMode="startsWith">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems
+										value="#{consultarLancamentoController.view.listaClientes}"
+										var="cliente" itemValue="#{this}" itemLabel="#{cliente.nome}" />
+								</p:selectOneMenu>
+
+								<p:outputLabel for="cbFormaPgto" value="Forma de Pagamento" />
+								<br />
+								<p:selectOneMenu id="cbFormaPgto"
+									value="#{consultarLancamentoController.view.lancamento.lancamentoEntrada.formaPagamento}"
+									autoWidth="false">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems
+										value="#{manterLancamentoController.view.formasPagamento}"
+										var="formaPgto" itemValue="#{this}"
+										itemLabel="#{formaPgto.descricao}" />
+								</p:selectOneMenu>
+							</p:column>
+						</p:panelGrid>
+						<p:panelGrid columns="2" styleClass="ui-panelgrid-blank">
+							<p:column>
+								<p:outputLabel for="datade" value="De:" />
+								<p:calendar id="datade" value="#{consultarLancamentoController.view.lancamento.periodo.dataInicio}"
+									pattern="dd/MM/yyyy" mask="true" locale="pt_BR"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel for="dataate" value="Até:" />
+								<p:calendar id="dataate" value="#{consultarLancamentoController.view.lancamento.periodo.dataFim}"
+									pattern="dd/MM/yyyy" mask="true" />
+							</p:column>
+						</p:panelGrid>
+					</div>
+
+					<p:commandButton id="btConsultar" value="Consultar"
+						update="table"
+						action="#{consultarLancamentoController.consultar()}" />
+					<p:commandButton id="btVoltar" value="Incluir"
+						onclick="window.history.back();" />
+				</h:form>
+			</p:fieldset>
+			
+			<p:dataTable paginator="true" rows="15"
+					value="#{consultarLancamentoController.view.resultado}"
+					id="table" lazy="true" var="lancamentoEntrada" rendered="#{not empty consultarLancamentoController.view.resultado}"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="15,25,50">
+					<p:column headerText="Funcionário">
+						<h:outputText value="#{lancamentoEntrada.funcionario.nome}"/>
+					</p:column>
+
+					<p:column headerText="Cliente">
+						<h:outputText value="#{lancamentoEntrada.cliente.nome}" />
+					</p:column>
+					
+					<p:column headerText="Serviço">
+						<h:outputText value="#{lancamentoEntrada.servico.nome}" />
+					</p:column>
+					
+					<p:column headerText="Valor">
+						<h:outputText value="#{lancamentoEntrada.valorLancamento}" converter="dinheiroConverter"/>
+					</p:column>
+
+				</p:dataTable>
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

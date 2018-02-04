@@ -13,24 +13,25 @@
 			<legend>Consultar Cliente</legend>		
 				<p:growl id="growl" showDetail="false" />
 				
-				<div class="ui-md-3">
-					<p:outputLabel for="cpf" value="CPF:"/>
-					<br/>
-					<p:inputMask mask="999.999.999-99" id="cpf" label="CPF:" validator="CpfValidator"
-						converter="cpfConverter" value="#{manterClienteController.consultarView.clienteConsulta.cpf}"/>
-				</div>
-
-				<div class="ui-md-5">
-					<ph:inputText inputId="nome" label="Nome"
-						value="#{manterClienteController.consultarView.clienteConsulta.nome}" />
-				</div>
+				<div class="ui-fluid">
+					<div class="ui-md-3">
+						<p:outputLabel for="cpf" value="CPF:"/>
+						<br/>
+						<p:inputMask mask="999.999.999-99" id="cpf" label="CPF:" validator="CpfValidator"
+							converter="cpfConverter" value="#{manterClienteController.consultarView.clienteConsulta.cpf}"/>
+					</div>
+	
+					<div class="ui-md-5">
+						<ph:inputText inputId="nome" label="Nome"
+							value="#{manterClienteController.consultarView.clienteConsulta.nome}" />
+					</div>
+						
+					<ph:inputText inputId="email" label="Email" value="#{manterClienteController.consultarView.clienteConsulta.email}" />
 					
-				<ph:inputText inputId="email" label="Email" value="#{manterClienteController.consultarView.clienteConsulta.email}" />
-				
-				<ph:inputText inputId="endereco" label="Endereço" value="#{manterClienteController.consultarView.clienteConsulta.endereco}"/>
-
-				<br />
-
+					<ph:inputText inputId="endereco" label="Endereço" value="#{manterClienteController.consultarView.clienteConsulta.endereco}"/>
+	
+					<br />
+				</div>
 
 				<p:commandButton id="btConsultar" value="Consultar"
 					action="#{manterClienteController.consultar()}" update="table consultarClienteForm"/>
