@@ -9,8 +9,7 @@
 	<ui:define name="corpo">
 		<h:body>
 		<h:form id="consultarClienteForm" prependId="false">
-			<fieldset>
-			<legend>Consultar Cliente</legend>		
+			<p:fieldset legend="Consultar Cliente">		
 				<p:growl id="growl" showDetail="false" />
 				
 				<div class="ui-fluid">
@@ -37,7 +36,7 @@
 					action="#{manterClienteController.consultar()}" update="table consultarClienteForm"/>
 				<p:commandButton id="btIncluir" value="Incluir"
 					action="incluirCliente.xhtml?faces-redirect=true" />
-			</fieldset>
+			</p:fieldset>
 				<br />
 
 				<p:dataTable paginator="true" rows="15"
@@ -70,8 +69,8 @@
 			</h:form>
 			
 			<p:blockUI trigger="btConsultar table" block="consultarClienteForm">
-					<img src="../resources/images/loading.gif" />
-				</p:blockUI>
+				<img src="../resources/images/loading.gif" />
+			</p:blockUI>
 		</h:body>
 	</ui:define>
 </ui:composition>

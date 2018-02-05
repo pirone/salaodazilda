@@ -8,8 +8,7 @@
 <ui:composition template="/WEB-INF/templates/master.xhtml">
     <ui:define name="corpo">
         <h:body>
-            <fieldset>
-            <legend>Incluir Cliente</legend>
+            <p:fieldset legend="Incluir Cliente">
 	            <h:form id="incluirClienteForm" prependId="false" >
 	            	<p:growl id="growl" showDetail="false"/> 
 	            	
@@ -31,8 +30,8 @@
 	                
 	                <p:commandButton id="btIncluir" value="Incluir" action="#{manterClienteController.incluir()}" actionListener="#{growlMessages.inclusaoSucessoGenerico()}" update="incluirClienteForm"/>
 	                <p:commandButton id="btVoltar" value="Voltar" onclick="window.history.back();" />
-            </h:form>
-            </fieldset>
+            	</h:form>
+            </p:fieldset>
         </h:body>
     </ui:define>
 </ui:composition>

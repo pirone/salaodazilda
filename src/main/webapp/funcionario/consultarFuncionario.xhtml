@@ -9,8 +9,7 @@
 	<ui:define name="corpo">
 		<h:body>
 		<h:form id="consultarFuncionario" prependId="false">
-			<fieldset>
-			<legend>Consultar Funcionário</legend>		
+			<p:fieldset legend="Consultar Funcionário">
 				<p:growl id="growl" showDetail="false" />
 				
 				<p:outputLabel for="cpf" value="CPF:"/>
@@ -31,7 +30,7 @@
 					action="#{manterFuncionarioController.consultar()}" update="table"/>
 				<p:commandButton id="btIncluir" value="Incluir"
 					action="incluirFuncionario.xhtml?faces-redirect=true" />
-			</fieldset>
+			</p:fieldset>
 				<br />
 
 				<p:dataTable paginator="true" rows="15"

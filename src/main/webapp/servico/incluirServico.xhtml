@@ -8,8 +8,7 @@
 <ui:composition template="/WEB-INF/templates/master.xhtml">
     <ui:define name="corpo">
         <h:body>
-        	<fieldset>
-            <legend>Incluir Serviço</legend>
+        	<p:fieldset legend="Incluir Serviço">
 	            <h:form id="incluirServico" prependId="false" >
 	            	<p:growl id="growl" showDetail="false"/> 
 	            	
@@ -22,7 +21,7 @@
 	                	oncomplete=""/>
 	                <p:commandButton id="btVoltar" value="Voltar" onclick="window.history.back();" />
 	            </h:form>
-            </fieldset>
+            </p:fieldset>
         </h:body>
     </ui:define>
 </ui:composition>

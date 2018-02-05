@@ -9,9 +9,7 @@
 	<ui:define name="corpo">
 		<h:body>
 		<h:form id="incluirServico" prependId="false">
-			<fieldset>
-			<legend>Consultar Serviço</legend>
-			
+			<p:fieldset legend="Consultar Serviço">
 				<p:growl id="growl" showDetail="false" />
 
 				<ph:inputText inputId="nomeServico" label="Nome"
@@ -30,7 +28,7 @@
 				<p:commandButton id="btIncluir" value="Incluir"
 					action="incluirServico.xhtml?faces-redirect=true" />
 
-			</fieldset>
+			</p:fieldset>
 
 				<p:dataTable paginator="true" rows="15"
 					value="#{manterServicoController.consultarView.resultado}"

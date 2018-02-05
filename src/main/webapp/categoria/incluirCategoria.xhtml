@@ -9,9 +9,7 @@
 	<ui:define name="corpo">
 		<h:body>
 		<h:form id="incluirCategoriaForm" prependId="false">
-			<fieldset>
-			<legend>Incluir Categoria de Serviço</legend>
-			
+			<p:fieldset legend="Incluir Categoria de Serviço">
 				<p:growl id="growl" showDetail="false" />
 
 				<ph:inputText inputId="nomeCategoria" label="Nome" required="true"
@@ -27,7 +25,7 @@
 				<p:commandButton id="btCancelar" value="Cancelar" 
 					action="consultarCategoria.xhtml?faces-redirect=true" />
 
-			</fieldset>
+			</p:fieldset>
 				
 			<p:blockUI trigger="btIncluir" block="incluirCategoriaForm">
 				<img src="../resources/images/loading.gif" />

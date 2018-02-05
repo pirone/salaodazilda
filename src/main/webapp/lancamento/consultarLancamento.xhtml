@@ -91,7 +91,7 @@
 			
 			<p:dataTable paginator="true" rows="15"
 					value="#{consultarLancamentoController.view.resultado}"
-					id="table" lazy="true" var="lancamentoEntrada" rendered="#{not empty consultarLancamentoController.view.resultado}"
+					id="table" lazy="true" var="lancamentoEntrada" 
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="15,25,50">
 					<p:column headerText="Funcionário">
@@ -112,6 +112,10 @@
 
 				</p:dataTable>
 		</h:body>
+		
+		<p:blockUI trigger="btConsultar table" block="consultarLancamentoForm">
+			<img src="../resources/images/loading.gif" />
+		</p:blockUI>
 	</ui:define>
 </ui:composition>
 </html>
