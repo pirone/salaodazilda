@@ -84,11 +84,12 @@
 					<p:commandButton id="btConsultar" value="Consultar"
 						update="table"
 						action="#{consultarLancamentoController.consultar()}" />
-					<p:commandButton id="btVoltar" value="Incluir"
-						onclick="window.history.back();" />
+					<p:commandButton id="btIncluir" value="Incluir"
+						action="incluirLancamento.xhtml?faces-redirect=true" />
 				</h:form>
 			</p:fieldset>
 			
+			<br />
 			<p:dataTable paginator="true" rows="15"
 					value="#{consultarLancamentoController.view.resultado}"
 					id="table" lazy="true" var="lancamentoEntrada" 

@@ -18,7 +18,9 @@
 		            	<br/>
 			            <p:selectOneMenu id="cbFuncionario" label="Funcionario Responsável:" value="#{manterLancamentoController.view.lancamentoInclusao.funcionario}" converter="generic" 
 			            	filter="true" filterMatchMode="startsWith" required="true">
+			            	<f:selectItem itemLabel="Selecione"/>
 							<f:selectItems value="#{manterLancamentoController.view.listaFuncionarios}" var="funcionario" itemValue="#{this}" itemLabel="#{funcionario.nome}"/>
+							<p:ajax update="comissao" listener="#{manterLancamentoController.atualizaPcComissao()}"/>
 						</p:selectOneMenu>
 			            <br/>
 			            <p:outputLabel for="cbServico" value="Serviço:"/>
@@ -35,10 +37,14 @@
 							<f:selectItems value="#{manterLancamentoController.view.listaClientes}" var="cliente" itemValue="#{this}" itemLabel="#{cliente.nome}"/>
 						</p:selectOneMenu>
 						
-						<div class="ui-md-2">
-							<ph:inputMoney label="Valor" inputId="valorLancamento" value="#{manterLancamentoController.view.lancamentoInclusao.valorLancamento}" required="true" />
-						</div>
-						
+						<br />
+						<p:outputLabel for="comissao" value="Comissão:"/>
+			            <br />
+			            <p:inputNumber id="comissao" value="#{manterLancamentoController.view.lancamentoInclusao.pcComissao}" symbol="%" symbolPosition="s" emptyValue="empty" required="true" 
+			            	decimalSeparator="," thousandSeparator="." converter="percentualConverter"/>
+
+						<ph:inputMoney label="Valor" inputId="valorLancamento" value="#{manterLancamentoController.view.lancamentoInclusao.valorLancamento}" required="true" />
+
 			            <p:outputLabel for="cbFormaPgto" value="Forma de Pagamento"/>
 		            	<br/>
 		            	<p:selectOneMenu id="cbFormaPgto" value="#{manterLancamentoController.view.lancamentoInclusao.formaPagamento}" autoWidth="false">

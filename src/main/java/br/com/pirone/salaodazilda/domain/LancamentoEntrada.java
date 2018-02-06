@@ -4,6 +4,8 @@ import br.com.pirone.salaodazilda.domain.Lancamento;
 import br.com.pirone.salaodazilda.enums.FormaPagamento;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import javax.persistence.*;
 
 /**
@@ -32,6 +34,9 @@ public class LancamentoEntrada extends Lancamento implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_servico")
 	private Servico servico;
+	
+	@Column(name = "pc_comissao")
+	private BigDecimal pcComissao;
 	
 	@Column(name = "forma_pagamento")
 	private FormaPagamento formaPagamento;
@@ -66,6 +71,18 @@ public class LancamentoEntrada extends Lancamento implements Serializable {
 
 	public void setFormaPagamento(FormaPagamento formaPagamento) {
 		this.formaPagamento = formaPagamento;
+	}
+
+	public BigDecimal getPcComissao() {
+		return pcComissao;
+	}
+
+	public void setPcComissao(BigDecimal pcComissao) {
+		this.pcComissao = pcComissao;
+	}
+	
+	public BigDecimal getValorComissao() {
+		return getValorLancamento().multiply(getPcComissao().divide(new BigDecimal(100)));
 	}
 
    

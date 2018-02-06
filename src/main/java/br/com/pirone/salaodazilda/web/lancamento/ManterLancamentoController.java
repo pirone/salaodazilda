@@ -1,6 +1,7 @@
 package br.com.pirone.salaodazilda.web.lancamento;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -62,6 +63,10 @@ public class ManterLancamentoController extends BaseController implements Serial
 			logger.error(e.getMessage());
 			enviarMensagemErro();
 		}
+	}
+	
+	public void atualizaPcComissao() {
+		this.view.getLancamentoInclusao().setPcComissao(new BigDecimal(view.getLancamentoInclusao().getFuncionario().getTaxaComissao()));
 	}
 
 }

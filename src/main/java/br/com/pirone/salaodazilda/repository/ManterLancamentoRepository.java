@@ -9,8 +9,10 @@ import com.uaihebert.uaicriteria.UaiCriteria;
 import com.uaihebert.uaicriteria.UaiCriteriaFactory;
 
 import br.com.pirone.salaodazilda.config.GenericEntityManager;
+import br.com.pirone.salaodazilda.domain.Funcionario;
 import br.com.pirone.salaodazilda.domain.LancamentoEntrada;
 import br.com.pirone.salaodazilda.to.LancamentoTO;
+import br.com.pirone.salaodazilda.util.Periodo;
 
 @RequestScoped
 public class ManterLancamentoRepository extends GenericEntityManager implements Serializable {
@@ -33,6 +35,12 @@ public class ManterLancamentoRepository extends GenericEntityManager implements 
 		if (lancamento.getPeriodo().preenchido()) {
 			uaiCriteria.andBetween("dataLancamento", lancamento.getPeriodo().getDataInicio(), lancamento.getPeriodo().getDataFim());
 		}
+		return uaiCriteria.getResultList();
+	}
+	
+	public List<LancamentoEntrada> consultarLancamentosEntrada(Funcionario funcionario, Periodo periodo) {
+		uaiCriteria.innerJoin("funcionario").andEquals("funcionario.id", funcionario.getId());
+		uaiCriteria.andBetween("dataLancamento", periodo.getDataInicio(), periodo.getDataFim());
 		return uaiCriteria.getResultList();
 	}
 

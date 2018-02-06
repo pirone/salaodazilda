@@ -66,6 +66,5 @@ public class IncluirLancamentoView implements Serializable {
 	public void setLancamentoInclusao(LancamentoEntrada lancamentoInclusao) {
 		this.lancamentoInclusao = lancamentoInclusao;
 	}
-
-
+	
 }

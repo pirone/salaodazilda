@@ -1,0 +1,121 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ph="http://xmlns.jcp.org/jsf/composite/ph">
+
+<ui:composition template="/WEB-INF/templates/master.xhtml">
+	<ui:define name="corpo">
+		<h:body>
+			<p:fieldset legend="Relatório de Funcionário">
+				<h:form id="consultarLancamentoForm" prependId="false">
+					<div class="ui-fluid">
+						<p:growl id="growl" showDetail="true" />
+						<p:panelGrid columns="3" columnClasses="ui-grid-col-6, ui-grid-col-2, ui-grid-col-2"
+							layout="grid" styleClass="ui-panelgrid-blank">
+
+
+							<p:column>
+								<p:outputLabel for="cbFuncionario" value="Funcionário:" />
+								<br />
+								<p:selectOneMenu id="cbFuncionario" required="true"
+									value="#{relatorioFuncionarioController.view.pesquisaTO.funcionario}"
+									converter="generic" filter="true" filterMatchMode="startsWith">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems
+										value="#{consultarLancamentoController.view.listaFuncionarios}"
+										var="funcionario" itemValue="#{this}"
+										itemLabel="#{funcionario.nome}" />
+								</p:selectOneMenu>
+							</p:column>	
+							<p:column>
+								<p:outputLabel for="cbMes" value="Mês:" />
+								<br />
+								<p:selectOneMenu id="cbMes" label="Mês:"
+									value="#{relatorioFuncionarioController.view.pesquisaTO.mes}"
+									autoWidth="true">
+									<f:selectItems
+										value="#{relatorioFuncionarioController.view.listaMeses()}"
+										var="mes" itemValue="#{this}" itemLabel="#{mes.descricao}" />
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:outputLabel for="ano" value="Ano:"/>
+								<br/>
+								<p:inputNumber id="ano" value="#{relatorioFuncionarioController.view.pesquisaTO.ano}" maxlength="4" decimalPlaces="0" thousandSeparator="" 
+									maxValue="9999" required="true"/>  
+							</p:column>
+						</p:panelGrid>
+					</div>
+
+					<p:commandButton id="btConsultar" value="Consultar"
+						update="consultarLancamentoForm table info"
+						action="#{relatorioFuncionarioController.consultar()}" />
+
+				</h:form>
+			</p:fieldset>
+			
+			<br />
+			<p:fieldset legend="#{relatorioFuncionarioController.view.relatorioTO.funcionario.nome}" id="info">
+				<p:panelGrid layout="grid" columns="4" styleClass="ui-panelgrid-blank" 
+					rendered="#{not empty relatorioFuncionarioController.view.relatorioTO.lancamentosFuncionario}">
+					<p:column>
+						<p:panel header="Comissão Padrão:">
+							<h:outputText value="#{relatorioFuncionarioController.view.relatorioTO.funcionario.taxaComissao} %" converter="percentualConverter"/>
+						</p:panel>
+					</p:column>
+					<p:column>
+						<p:panel header="Lançamentos">
+							<h:outputText value="#{relatorioFuncionarioController.view.relatorioTO.lancamentosFuncionario.size()}" />
+						</p:panel>
+					</p:column>
+					<p:column>
+						<p:panel header="Total dos lançamentos">
+							<h:outputText value="R$ #{relatorioFuncionarioController.view.relatorioTO.totalLancamentos()}" converter="dinheiroConverter"/>
+						</p:panel>
+					</p:column>
+					<p:column>
+						<p:panel header="Total Comissão">
+							<h:outputText value="R$ #{relatorioFuncionarioController.view.relatorioTO.totalComissao()}" converter="dinheiroConverter"/>
+						</p:panel>
+					</p:column>
+				</p:panelGrid>
+			
+			
+				<br />
+				<p:dataTable paginator="true" rows="15"
+						value="#{relatorioFuncionarioController.view.relatorioTO.lancamentosFuncionario}"
+						id="table" lazy="true" var="lancamentoEntrada" 
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="15,25,50">
+	
+					<p:column headerText="Cliente">
+						<h:outputText value="#{lancamentoEntrada.cliente.nome}" />
+					</p:column>
+					
+					<p:column headerText="Serviço">
+						<h:outputText value="#{lancamentoEntrada.servico.nome}" />
+					</p:column>
+					
+					<p:column headerText="Data">
+						<h:outputText value="#{lancamentoEntrada.dataLancamento}" converter="dateConverter"/>
+					</p:column>
+					
+					<p:column headerText="Comissão (%)">
+						<h:outputText value="#{lancamentoEntrada.pcComissao}" converter="percentualConverter"/>
+					</p:column>
+					
+					<p:column headerText="Valor">
+						<h:outputText value="#{lancamentoEntrada.valorLancamento}" converter="dinheiroConverter"/>
+					</p:column>
+	
+				</p:dataTable>
+			</p:fieldset>
+		</h:body>
+		<p:blockUI trigger="btConsultar table" block="consultarLancamentoForm">
+			<img src="../resources/images/loading.gif" />
+		</p:blockUI>
+	</ui:define>
+</ui:composition>
+</html>
