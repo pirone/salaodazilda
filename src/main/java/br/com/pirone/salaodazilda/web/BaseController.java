@@ -3,7 +3,6 @@ package br.com.pirone.salaodazilda.web;
 import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
 public class BaseController implements Serializable {
@@ -39,5 +38,11 @@ public class BaseController implements Serializable {
     	FacesContext context = FacesContext.getCurrentInstance();
     	
     	context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Não foi possível realizar a operação."));
+    }
+    
+    public void enviarMensagemErro(String mensagem) {
+    	FacesContext context = FacesContext.getCurrentInstance();
+    	
+    	context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", mensagem));
     }
 }

@@ -16,6 +16,7 @@
         <class>br.com.pirone.salaodazilda.domain.CategoriaServico</class>
         <class>br.com.pirone.salaodazilda.domain.Lancamento</class>
         <class>br.com.pirone.salaodazilda.domain.LancamentoEntrada</class>
+        <class>br.com.pirone.salaodazilda.domain.Usuario</class>
 
         <properties>
             <!-- Uma vez que você está usando datasource não é necessário configurar novamente o acesso ao banco -->

@@ -11,21 +11,20 @@
 		<ui:define name="corpo">
 			<h:body>
 			<div class="background">
-				<h:form>
+				<h:form id="login">
 				<p:growl id="growl" sticky="true" showDetail="true" life="3000" showSummary="false" />
 					<p:panelGrid columns="2" styleClass="panelGridCenter">
 						<f:facet name="header">
 							<h3>Login</h3>
 						</f:facet>
 							<h:outputLabel for="user" value="Usuário:"/>
-							<p:inputText id="user" required="true" maxlength="10"  requiredMessage="Usuário obrigatório."/>
+							<p:inputText id="user" required="true" maxlength="10" value="#{loginController.usuario}"/>
 	
 							<h:outputLabel for="password" value="Senha:"/>
-							<p:password id="password" required="true" maxlength="8"  requiredMessage="Senha obrigatória."/>
+							<p:password id="password" required="true" maxlength="8" value="#{loginController.senha}" />
 	
 							<f:facet name="footer">
-							<p:commandButton value="Entrar" update="growl" actionListener="#{userLoginView.login}"
-											 oncomplete="handleLoginRequest(xhr, status, args)" />
+							<p:commandButton value="Entrar" update="growl" action="#{loginController.logar()}"/>
 							</f:facet>
 					</p:panelGrid>
 				</h:form>
