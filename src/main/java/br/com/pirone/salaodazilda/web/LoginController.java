@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.NoResultException;
@@ -44,6 +45,7 @@ public class LoginController extends BaseController {
 	public String logar() {
 		try {
 			repository.logar(usuario, senha);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("username", usuario);
 			return "index.html";
 		} catch (NoResultException e) {
 			enviarMensagemErro("Usuário ou senha inválidos");
